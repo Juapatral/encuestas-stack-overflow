@@ -197,7 +197,7 @@ Como existen muchas categorías por dimensión, se toman los años 2011, 2012 y 
 
 *<center> Modelo del cubo </center>*
 
-![Imagen del cubo](imagenes/modelo-cubo.png)
+![Imagen del cubo](imagenes/modelo-cubo.PNG)
 
 ***Modelo de estrella***
 
@@ -205,7 +205,7 @@ Para este modelo se identifican todas las dimensiones (o columnas para como se c
 
 *<center> Modelo de estrella </center>*
 
-![Imagen de estrella](imagenes/estrella.png)
+![Imagen de estrella](imagenes/Estrella.PNG)
 
 ***Modelo de Malinowski***
 
@@ -213,4 +213,4 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 
 *<center> Modelo de Malinowski </center>
 
-![Imagen de estrella](imagenes/malinowski.png)
+![Imagen de Malinowski](imagenes/Malinowski.PNG)
