@@ -211,6 +211,6 @@ Para este modelo se identifican todas las dimensiones (o columnas para como se c
 
 El modelo de Malinowski es similar al modelo estrella, cambiando la notación del hecho, las medidas del hecho y las dimensiones. Estas últimas se pueden desagregar a nivel de atributos, pero para este ejercicio no es posible debido a la forma como está constituida la bodega de datos.
 
-*<center> Modelo de Malinowski </center>
+*<center> Modelo de Malinowski </center>*
 
 ![Imagen de Malinowski](imagenes/Malinowski.PNG)
