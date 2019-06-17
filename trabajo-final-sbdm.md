@@ -1,6 +1,6 @@
-# <center> **Trabajo final Sistema de Bases de Datos Masivos** </center>
+# <center> Trabajo final Sistema de Bases de Datos Masivos </center>
 
-## <center> **Análisis de las encuestas de Stack Overflow entre los años 2011 y 2017** </center>
+## <center> Análisis de las encuestas de Stack Overflow entre los años 2011 y 2017 </center>
 
 ---
 
@@ -28,9 +28,9 @@ Juan Pablo Trujillo Alviz
 
     3.1. [Establecer conexión](#establecer-conexión)
 
-    3.2. [Limpieza de tablas](#limpieza-de-las-tablas)
+    3.2. [Limpieza de tablas](#unificación-y-limpieza-de-las-tablas)
 
-    3.3. [SQL](#15-sql)
+    3.3. [Preguntas y respuestas](#preguntas-y-respuestas)
 
     3.4. [Representación visual de la bodega de datos](#representación-visual-de-la-bodega-de-datos)
 
@@ -45,14 +45,15 @@ Este es el trabajo final del módulo Sistemas de Bases de Datos Masivos del posg
 
 >Analizar tendencias dentro del mundo de la tecnología se ha convertido en uno de los más grandes retos de la industria, prever cuál será el siguiente y más éxitoso lenguaje de programación o cuál sería el salario ideal para un desarrollador por tecnología se convertirá en una tarea crítica durante los próximos años. Stack Overflow es un sitio web ampliamente utilizado por la comunidad de desarrolladores de software, en la cual otros desarrolladores pueden encontrar soluciones a problemas de programación en diferentes lenguajes. Este sitio realiza desde el 2011 una encuesta a sus usuarios para observar y analizar tendencias en la industria de la tecnología y el software: https://insights.stackoverflow.com/survey/2019. La más reciente fue durante el mismo 2019. 
 
->Las encuestas han sido cuidadosamente almacenadas y expuestas en directorios de datos abiertos. Para este análisis se utilizarán 7 conjuntos de datos masivos completamente libres y accesibles a través de BigQuery que son las encuestas de los años 2011 a 2017.
+>Las encuestas han sido cuidadosamente almacenadas y expuestas en directorios de datos abiertos. Para este análisis se utilizarán 7 conjuntos de datos masivos completamente libres y accesibles a través de `BigQuery` que son las encuestas de los años 2011 a 2017.
 
 Las encuestas pueden ser consultadas a través de *Google Cloud BigQuery* o están disponibles de manera gratuita en [este enlace](https://insights.stackoverflow.com/survey). (Importante revisar el licenciamiento de las bases de datos antes de trabajar con ellas)
 
-#### Licenciamiento
+[Regresar](#índice)
+
+### **Licenciamiento**
 
 Todas las encuestas desde el 2011 al 2019 están disponibles [aquí](https://insights.stackoverflow.com/survey).
-
 
 Estas bases de datos son publicables a través de la Licencia de Bases de Datos Abiertas (ODbL por sus siglas en inglés) y los términos y condiciones pueden ser consultados [aquí](http://opendatacommons.org/licenses/odbl/1.0/), mientras que todos los derechos individuales sobre el contenido de la base de datos están licenciados a través de la Licencia de Contenido de Bases de Datos (DbCL por sus siglas en inglés) y los términos y condiciones pueden ser consultados [aquí](http://opendatacommons.org/licenses/dbcl/1.0/).
 
@@ -61,23 +62,23 @@ Este tipo de licenciamiento da derecho a compartir, adaptar y crear trabajos der
 **Agradecimientos**
 
 La fuente primaria de las bases de datos consultadas es Stack Overflow y contiene información sobre las encuestas realizadas por esta organización. La base de datos resultante, que en este documento se llama "encuestas", así como todos los resultados obtenidos de ella, están disponible gracias a la Licencia de Bases de Datos Abiertas ([ODbL](https://opendatacommons.org/licenses/odbl/1.0/)).
-
 <br>
+
+[Regresar](#índice)
 
 ## **Metodología**
 ---
 
 Para el desarrollo de este trabajo se propone utilizar el lenguaje de programación libre *Python* en su versión 3.7 de *IPython* y el editor de cuadernos de código, igualmente libre, de *Jupyter* a través de *Google Colab*. En caso de que se vaya a utilizar directamente el código de manera remota, se propone utilizar *Jupyter* a través de la instalación del software libre [*Anaconda Navigator*](https://www.anaconda.com/distribution/) ya que viene predeterminado con los paquetes de *Python* más comunes para realizar ciencia de datos con los binarios apropiados para la máquina donde se instale. 
 
-
 **Instalar paquetes necesarios**
 
-Se propone utilizar una conexión directa a *Google BigQuery* a través de una API privada, generando las credenciales de acceso. Para ello se utiliza el paquete de *Python google-cloud-bigquery*, el cual se puede instalar ejecutando el comando en la terminal del equipo:
+Se propone utilizar una conexión directa a *Google BigQuery* a través de una API privada, generando las credenciales de acceso. Para ello se utiliza el paquete de *Python google-cloud-bigquery*, el cual se puede instalar ejecutando el comando en la `terminal del equipo`:
 
 ```terminal
 pip install google-cloud.bigquery
 ```
-En caso de que se tenga instalado *Anaconda Navigator*, se recomienda instalar el paquete a través de la sección de ambientes virtuales dentro del navegador o con el  comando dentro de la terminal de *Anaconda Prompt*:
+En caso de que se tenga instalado *Anaconda Navigator*, se recomienda instalar el paquete a través de la sección de ambientes virtuales dentro del navegador o con el  comando dentro de la `terminal de Anaconda Prompt`:
 
 ```terminal
 conda install -c conda-forge google-cloud-bigquery
@@ -159,6 +160,8 @@ tabla.head()
 
 <br>
 
+[Regresar](#índice)
+
 ## **Desarrollo**
 ---
 
@@ -172,7 +175,6 @@ Las encuestas de los años 2016 y 2017 manejan un esquema similar a los años, s
 
 Finalmente, las preguntas y respuestas varían año a año, tanto en la estructura gramatical de cada una como en el número. Los conjuntos de datos cuentan entre 50 campos (el más corto) hasta más de 200 campos.
 
-
 ### **Identificación de campos en común**
 
 Los esquemas de las encuestas son variantes a lo largo de los años, por lo que se requiere una verificación, en su mayor parte manual, de las preguntas y respuestas comunes entre los años a analizar. 
@@ -185,15 +187,15 @@ Por esta razón, se eligen las siguientes variables comunes:
 + Salario
 + Lenguajes de programación
 
-**Unificación y limpieza de las tablas**
+### **Unificación y limpieza de las tablas**
 
-Cada encuesta presentaba diferentes tipos de datos para cada una de las variables, por lo que se realizó un proceso de limpieza y homologación de datos utilizando unas funciones de los paquetes de *re*, *numpy*, *itertools* y *pandas*, además de crear unas funciones propias para automatizar el proceso. 
+Cada encuesta presentaba diferentes tipos de datos para cada una de las variables, por lo que se realizó un proceso de limpieza y homologación de datos utilizando funciones de los paquetes de *re*, *numpy*, *itertools* y *pandas*, además de crear unas funciones propias para automatizar el proceso. 
 
-Estas pueden ser consultadas en el cuaderno de *Jupyter*, accesible **[aquí PENDIENTE](https://google.com)**, en la subsección de *Limpieza de las tablas*.
+Este proceso de limpieza puede ser consultado en el cuaderno de *Jupyter*, accesible **[aquí PENDIENTE](https://google.com)**, en la subsección de *Limpieza de las tablas*.
 
 Después de la limpieza de cada una de las encuestas, el resultado es la bodega de datos ***encuestas*** que cuenta con una única tabla con el siguiente esquema:
 
-| Nombre | Tipo  | Descripción |
+| Campo | Tipo  | Descripción |
 | --- | --- | --- |
 |survey| integer | Año de realización de la encuesta|
 | country | string | País que indica la persona que responde la encuesta|
@@ -202,11 +204,66 @@ Después de la limpieza de cada una de las encuestas, el resultado es la bodega 
 | salary | string | Rango salarial en USD: 0, Less than 20K, 20K - 40K, (rangos de 20K en 20K), 120K - 140K, More than 140K|
 | programming_language| string | Lenguajes de programación o programas que la persona dice saber manejar, separados por punto y coma (";")|
 
+[Regresar](#índice)
 
-
-### **15 SQL**
+### **Preguntas y respuestas**
 
 ~~En esta sección van las preguntas, las imágenes de las respuestas y un corto enunciado. Todavía no está terminado~~
+
+De la información de la encuesta se propone responder las siguientes preguntas
+
+1. ¿Cuántas personas respondieron cada encuesta?
+
+
+2. ¿Cuáles son los diez países que más respondieron las encuestas?
+
+
+3. ¿Cuántos son los programadores que dominan cada uno de los lenguajes o tecnologías? **(Jhon)**
+
+
+4. ¿Cuáles son los cinco lenguajes de programación mas usados por encuesta? **(Jhon)**
+
+
+5. ¿Cuál es el rango salarial mas común por encuesta?
+
+
+6. ¿Cuáles son las tres pincipales ocupaciones por encuesta?
+
+
+7. ¿Cuáles son las tres principales ocupaciones por pais? **(Jhon)**
+
+
+8. ¿Cuál es el principal rango salarial en cada país de los diez países con más respuestas?
+
+
+9. ¿Cuál es el lenguaje con más crecimiento en las encuestas? **(Jhon)** ***(Muy importante para la predicción)***
+
+
+10. ¿Cuál es el lenguaje mas popular en cada país de los diez países con mas programadores?
+
+
+11. ¿Cuáles son las cinco ocupaciones más populares de los programadores que dominan *Python* por encuesta? **(Jhon)**
+
+
+12. ¿Cuáles son las tres ocupaciones con más programadores en los dos más altos rangos salariales?
+
+
+13. ¿Cuál es el país más experto e inexperto programando por encuesta? **(Jhon)**
+
+
+14. ¿Cuál es el número promedio de lenguajes que saben los programadores por encuesta?
+
+
+15. ¿Cuánto es el salario más común en Colombia por encuesta?
+
+
+16. ¿Cuál es la ocupacion más popular en Colombia por encuesta? **(Jhon)**
+
+
+17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
+
+
+[Regresar](#índice)
 
 ### **Representación visual de la bodega de datos**
 
@@ -241,3 +298,6 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 *<center> Imagen del modelo de Malinowski </center>*
 
 ![Imagen de Malinowski](imagenes/Malinowski.PNG)
+
+[Regresar](#índice)
+
