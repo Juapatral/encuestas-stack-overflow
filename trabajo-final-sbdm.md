@@ -1,55 +1,51 @@
-# <center> Trabajo final Sistema de Bases de Datos Masivos </center>
+# <center> **Trabajo final Sistema de Bases de Datos Masivos** </center>
 
-## <center> Análisis de las encuestas de Stack Overflow entre los años 2011 a 2017 </center>
+## <center> **Análisis de las encuestas de Stack Overflow entre los años 2011 y 2017** </center>
 
 ---
 
 ### <center> Posgrado de Analítica, 2019-1 </center>
-
-###  <center> Integrantes </center>​
+###  <center> Integrantes </center>​<br>
 <center> Jhon Anderson Londoño Herrera<br>
 Juan Pablo Trujillo Alviz 
-</center>
-
-<br>
+</center><br>
 
 <center> 22 de junio de 2019 </center>
 
 <br>
 
-## Índice
+## **Índice**
 
 ---
 
 1. [Motivación](#motivación)
 
-> 1.1[Licenciamiento](#licenciamiento)
+    1.1. [Licenciamiento](#licenciamiento)
 
 2. [Metodología](#metodología)
 
-
 3. [Desarrollo](#desarrollo)
 
-> 3.1 [Establecer conexión](#establecer-conexión)
+    3.1. [Establecer conexión](#establecer-conexión)
 
-> 3.2 [Limpieza de tablas](#limpieza-de-las-tablas)
+    3.2. [Limpieza de tablas](#limpieza-de-las-tablas)
 
-> 3.3 [SQL](#15-sql)
+    3.3. [SQL](#15-sql)
 
-> 3.4 [Representación visual de la bodega de datos](#representación-visual-de-la-bodega-de-datos)
+    3.4. [Representación visual de la bodega de datos](#representación-visual-de-la-bodega-de-datos)
 
 4. [URL's de interés](#urls-de-interes)
 
 <br>
 
-## Motivación
+## **Motivación**
 ---
 
 Este es el trabajo final del módulo Sistemas de Bases de Datos Masivos del posgrado de Analítica de la Universidad Nacional de Colombia, Sede Medellín. La guía del módulo puede ser consultado en esta [página web](https://sebastian-gomez.com/bigdata/) creada por el profesor MsC. Sebastián Gómez. El trabajo final, sus preguntas y lineamientos pueden ser consultados [aquí](https://drive.google.com/file/d/18uzP5uGg7OhbEDQIECtT8XtA4jr3NTf9/view).
 
-Analizar tendencias dentro del mundo de la tecnología se ha convertido en uno de los más grandes retos de la industria, prever cuál será el siguiente y más éxitoso lenguaje de programación o cuál sería el salario ideal para un desarrollador por tecnología se convertirá en una tarea crítica durante los próximos años. Stack Overflow es un sitio web ampliamente utilizado por la comunidad de desarrolladores de software, en la cual otros desarrolladores pueden encontrar soluciones a problemas de programación en diferentes lenguajes. Este sitio realiza desde el 2011 una encuesta a sus usuarios para observar y analizar tendencias en la industria de la tecnología y el software: https://insights.stackoverflow.com/survey/2019. La más reciente fue durante el mismo 2019. 
+>Analizar tendencias dentro del mundo de la tecnología se ha convertido en uno de los más grandes retos de la industria, prever cuál será el siguiente y más éxitoso lenguaje de programación o cuál sería el salario ideal para un desarrollador por tecnología se convertirá en una tarea crítica durante los próximos años. Stack Overflow es un sitio web ampliamente utilizado por la comunidad de desarrolladores de software, en la cual otros desarrolladores pueden encontrar soluciones a problemas de programación en diferentes lenguajes. Este sitio realiza desde el 2011 una encuesta a sus usuarios para observar y analizar tendencias en la industria de la tecnología y el software: https://insights.stackoverflow.com/survey/2019. La más reciente fue durante el mismo 2019. 
 
-Las encuestas han sido cuidadosamente almacenadas y expuestas en directorios de datos abiertos. Para este análisis se utilizarán 7 conjuntos de datos masivos completamente libres y accesibles a través de BigQuery que son las encuestas de los años **2011 a 2017**.
+>Las encuestas han sido cuidadosamente almacenadas y expuestas en directorios de datos abiertos. Para este análisis se utilizarán 7 conjuntos de datos masivos completamente libres y accesibles a través de BigQuery que son las encuestas de los años 2011 a 2017.
 
 Las encuestas pueden ser consultadas a través de *Google Cloud BigQuery* o están disponibles de manera gratuita en [este enlace](https://insights.stackoverflow.com/survey). (Importante revisar el licenciamiento de las bases de datos antes de trabajar con ellas)
 
@@ -68,18 +64,20 @@ La fuente primaria de las bases de datos consultadas es Stack Overflow y contien
 
 <br>
 
-## Metodología
+## **Metodología**
 ---
+
+Para el desarrollo de este trabajo se propone utilizar el lenguaje de programación libre *Python* en su versión 3.7 de *IPython* y el editor de cuadernos de código, igualmente libre, de *Jupyter* a través de *Google Colab*. En caso de que se vaya a utilizar directamente el código de manera remota, se propone utilizar *Jupyter* a través de la instalación del software libre [*Anaconda Navigator*](https://www.anaconda.com/distribution/) ya que viene predeterminado con los paquetes de *Python* más comunes para realizar ciencia de datos con los binarios apropiados para la máquina donde se instale. 
+
 
 **Instalar paquetes necesarios**
 
-
-Se propone utilizar una conexión directa a *Google BigQuery* a través de una API privada, generando las credenciales de acceso. Para ello se utiliza el paquete de python *google-cloud-bigquery* el cual se puede instalar ejecutando el comando en la terminal:
+Se propone utilizar una conexión directa a *Google BigQuery* a través de una API privada, generando las credenciales de acceso. Para ello se utiliza el paquete de *Python google-cloud-bigquery*, el cual se puede instalar ejecutando el comando en la terminal del equipo:
 
 ```terminal
 pip install google-cloud.bigquery
 ```
-En caso de que se tenga instalado *Anaconda Navigator*, se recomienda instalar el paquete con el siguiente comando dentro de la terminal de Anaconda:
+En caso de que se tenga instalado *Anaconda Navigator*, se recomienda instalar el paquete a través de la sección de ambientes virtuales dentro del navegador o con el  comando dentro de la terminal de *Anaconda Prompt*:
 
 ```terminal
 conda install -c conda-forge google-cloud-bigquery
@@ -87,7 +85,7 @@ conda install -c conda-forge google-cloud-bigquery
 
 **Establecer conexión desde equipo local**
 
-Una vez se instale el paquete necesario, se puede realizar la conexión ejecutando los siguientes códigos en python:
+Una vez se instale el paquete necesario, se puede realizar la conexión ejecutando los siguientes códigos en *Python*:
 
 ```terminal
 from google.cloud import bigquery
@@ -121,7 +119,7 @@ drive.mount('/content/gdrive') # ingrese la contraseña generada
 cd gdrive/'My drive'/
 
 # cargar el archivo de credenciales desde Drive
-credenciales = service_account.Credentials.from_service_account_file('filename.json')
+credenciales = service_account.Credentials.from_service_account_file('path/filename.json')
 ```
 
 **Ejecutar queries**
@@ -161,10 +159,10 @@ tabla.head()
 
 <br>
 
-## Desarrollo
+## **Desarrollo**
 ---
 
-### Estado actual de las tablas de las encuestas
+### **Estado actual de las tablas de las encuestas**
 
 Se realiza la consulta a través de *Google BigQuery* utilizando una cuenta educativa para acceder a la información de las encuestas de Stack Overflow de los años 2011 a 2017.
 
@@ -175,15 +173,44 @@ Las encuestas de los años 2016 y 2017 manejan un esquema similar a los años, s
 Finalmente, las preguntas y respuestas varían año a año, tanto en la estructura gramatical de cada una como en el número. Los conjuntos de datos cuentan entre 50 campos (el más corto) hasta más de 200 campos.
 
 
-### Identificación de campos en común
+### **Identificación de campos en común**
 
 Los esquemas de las encuestas son variantes a lo largo de los años, por lo que se requiere una verificación, en su mayor parte manual, de las preguntas y respuestas comunes entre los años a analizar. 
 
+Por esta razón, se eligen las siguientes variables comunes:
+
++ País
++ Años de experiencia programando
++ Ocupación
++ Salario
++ Lenguajes de programación
+
+**Unificación y limpieza de las tablas**
+
+Cada encuesta presentaba diferentes tipos de datos para cada una de las variables, por lo que se realizó un proceso de limpieza y homologación de datos utilizando unas funciones de los paquetes de *re*, *numpy*, *itertools* y *pandas*, además de crear unas funciones propias para automatizar el proceso. 
+
+Estas pueden ser consultadas en el cuaderno de *Jupyter*, accesible **[aquí PENDIENTE](https://google.com)**, en la subsección de *Limpieza de las tablas*.
+
+Después de la limpieza de cada una de las encuestas, el resultado es la bodega de datos ***encuestas*** que cuenta con una única tabla con el siguiente esquema:
+
+| Nombre | Tipo  | Descripción |
+| --- | --- | --- |
+|survey| integer | Año de realización de la encuesta|
+| country | string | País que indica la persona que responde la encuesta|
+| years_programming |string | Rango de años programando: Rather not say, less than 2 years, 2 - 5 years, 6 - 10 years, 11 or more years|
+| occupation| string | Puesto o área de trabajo|
+| salary | string | Rango salarial en USD: 0, Less than 20K, 20K - 40K, (rangos de 20K en 20K), 120K - 140K, More than 140K|
+| programming_language| string | Lenguajes de programación o programas que la persona dice saber manejar, separados por punto y coma (";")|
 
 
-### 15 SQL
 
-### Representación visual de la bodega de datos
+### **15 SQL**
+
+~~En esta sección van las preguntas, las imágenes de las respuestas y un corto enunciado. Todavía no está terminado~~
+
+### **Representación visual de la bodega de datos**
+
+A continuación se representa de forma gráfica la estructura de la bodega de datos a través de tres modelos: Cubo, Estrella y Malinowski.
 
 ***Modelo del cubo***
 
@@ -195,7 +222,7 @@ Para este modelo se toman tres dimensiones de la bodega de datos:
 
 Como existen muchas categorías por dimensión, se toman los años 2011, 2012 y 2017, los países Colombia, México y Ecuador y los rangos salariales 0, 120K - 140K, More than 140K.
 
-*<center> Modelo del cubo </center>*
+*<center> Imagen del modelo del cubo </center>*
 
 ![Imagen del cubo](imagenes/modelo-cubo.PNG)
 
@@ -203,7 +230,7 @@ Como existen muchas categorías por dimensión, se toman los años 2011, 2012 y 
 
 Para este modelo se identifican todas las dimensiones (o columnas para como se constituyó la bodega de datos) y el hecho que en este caso son las mismas encuestas.
 
-*<center> Modelo de estrella </center>*
+*<center> Imagen del modelo de estrella </center>*
 
 ![Imagen de estrella](imagenes/Estrella.PNG)
 
@@ -211,6 +238,6 @@ Para este modelo se identifican todas las dimensiones (o columnas para como se c
 
 El modelo de Malinowski es similar al modelo estrella, cambiando la notación del hecho, las medidas del hecho y las dimensiones. Estas últimas se pueden desagregar a nivel de atributos, pero para este ejercicio no es posible debido a la forma como está constituida la bodega de datos.
 
-*<center> Modelo de Malinowski </center>*
+*<center> Imagen del modelo de Malinowski </center>*
 
 ![Imagen de Malinowski](imagenes/Malinowski.PNG)
