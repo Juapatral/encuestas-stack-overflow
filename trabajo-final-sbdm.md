@@ -171,11 +171,11 @@ Se realiza la consulta a través de *Google BigQuery* utilizando una cuenta educ
 
 Las encuestas entre los años 2011 a 2015 cuentan con una estructura similar: si la pregunta es de una única respuesta, esta se guarda en una sola columna, mientras que si la pregunta permitía múltiples respuestas, e.g. seleccione de los siguientes los lenguajes de programación que domine, cada una de las posibles respuestas se guarda en una columna. Los nombres de las columnas son genéricos (*string_field_**n***, donde *n* es el número de la columna), las preguntas y sus posibles respuestas están, en general, en las primeras dos filas de cada conjunto de datos.
 
-Las encuestas de los años 2016 y 2017 manejan un esquema similar a los años, sin embargo, los nombres de las columnas corresponden a las preguntas. Si la pregunta contiene múltiples respuestas, estas se guardan en una sola columna separadas por un punto y coma (";").
+Las encuestas de los años 2016 y 2017 manejan un esquema similar donde los nombres de las columnas corresponden a las preguntas. Si la pregunta contiene múltiples respuestas, estas se guardan en una sola columna separadas por un punto y coma (";").
 
-Finalmente, las preguntas y respuestas varían año a año, tanto en la estructura gramatical de cada una como en el número. Los conjuntos de datos cuentan entre 50 campos (el más corto) hasta más de 200 campos.
+Finalmente, las preguntas y respuestas varían año a año, tanto en la estructura gramatical de cada una como en el número total de preguntas. Los conjuntos de datos cuentan entre 50 campos (el más corto) hasta más de 200 campos (el más largo).
 
-### **Identificación de campos en común**
+### **Identificación de campos en común a trabajar**
 
 Los esquemas de las encuestas son variantes a lo largo de los años, por lo que se requiere una verificación, en su mayor parte manual, de las preguntas y respuestas comunes entre los años a analizar. 
 
@@ -185,11 +185,13 @@ Por esta razón, se eligen las siguientes variables comunes:
 + Años de experiencia programando
 + Ocupación
 + Salario
-+ Lenguajes de programación
++ Lenguajes de programación o tecnologías que domina
+
+[Regresar](#índice)
 
 ### **Unificación y limpieza de las tablas**
 
-Cada encuesta presentaba diferentes tipos de datos para cada una de las variables, por lo que se realizó un proceso de limpieza y homologación de datos utilizando funciones de los paquetes de *re*, *numpy*, *itertools* y *pandas*, además de crear unas funciones propias para automatizar el proceso. 
+Cada encuesta presenta diferentes tipos de datos para cada una de las variables, por lo que se realizó un proceso de limpieza y homologación de datos utilizando funciones de los paquetes de *re*, *numpy*, *itertools* y *pandas*, además de crear unas funciones propias para automatizar el proceso. 
 
 Este proceso de limpieza puede ser consultado en el cuaderno de *Jupyter*, accesible **[aquí PENDIENTE](https://google.com)**, en la subsección de *Limpieza de las tablas*.
 
@@ -202,7 +204,7 @@ Después de la limpieza de cada una de las encuestas, el resultado es la bodega 
 | years_programming |string | Rango de años programando: Rather not say, less than 2 years, 2 - 5 years, 6 - 10 years, 11 or more years|
 | occupation| string | Puesto o área de trabajo|
 | salary | string | Rango salarial en USD: 0, Less than 20K, 20K - 40K, (rangos de 20K en 20K), 120K - 140K, More than 140K|
-| programming_language| string | Lenguajes de programación o programas que la persona dice saber manejar, separados por punto y coma (";")|
+| programming_language| string | Lenguajes de programación o tecnologías que la persona dice saber manejar, separados por punto y coma (";")|
 
 [Regresar](#índice)
 
@@ -210,7 +212,7 @@ Después de la limpieza de cada una de las encuestas, el resultado es la bodega 
 
 ~~En esta sección van las preguntas, las imágenes de las respuestas y un corto enunciado. Todavía no está terminado~~
 
-De la información de la encuesta se propone responder las siguientes preguntas
+De la información de la encuesta se propone responder las siguientes preguntas:
 
 1. ¿Cuántas personas respondieron cada encuesta?
 

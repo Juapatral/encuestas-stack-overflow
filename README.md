@@ -3,7 +3,7 @@
 Repositorio que contiene el análisis de las encuestas de Stack Overflow de los años 2011 a 2017, trabajo realizado para la materia Sistemas de Bases de Datos Masivos. 
 
 En este *repo* se encuentra lo siguiente:
-+ Trabajo final en formato Markdown. Para leer el trabajo completo, dar click [aquí](trabajo-final-sbdm.md).
++ Trabajo final en formato Markdown. Para leer el trabajo completo, dar click [aquí](https://juapatral.github.io/encuestas-stack-overflow/trabajo-final-sbdm.html).
 + Cuaderno de Jupyter con el código de programación en *Python*. Para ver el trabajo, dar click [aquí](https://google.com)
 + Imágenes de los anexos en la carpeta *imagenes*
 
