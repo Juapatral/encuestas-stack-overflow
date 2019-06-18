@@ -34,6 +34,8 @@ Juan Pablo Trujillo Alviz
 
     3.4. [Representación visual de la bodega de datos](#representación-visual-de-la-bodega-de-datos)
 
+    3.5 [Pronóstico de la encuesta 2018](#pronóstico-2018)
+
 4. [URL's de interés](#urls-de-interes)
 
 <br>
@@ -216,9 +218,17 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 1. ¿Cuántas personas respondieron cada encuesta?
 
+![query0](imagenes/query0.PNG)
+
+
+    Se observa que la cantidad de personas que respondieron la encuesta es creciente en el tiempo, donde en el 2011 respondieron un poco menos de 3 mil personas, mientras que en los dos últimos años fueron más de 50 mil. 
 
 2. ¿Cuáles son los diez países que más respondieron las encuestas?
 
+![query1](imagenes/query1.PNG)
+
+
+    Estados Unidos de América es el país con mayor número de encuestados (cerca de 38 mil). Le siguen India y Reino Unido con un aproximado de 15 mil encuestados cada uno. Esto se ve reflejado en la industria tecnológica y de servicios de telecomunicaciones que tienen cada uno de estos países.
 
 3. ¿Cuántos son los programadores que dominan cada uno de los lenguajes o tecnologías? **(Jhon)**
 
@@ -228,35 +238,66 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 5. ¿Cuál es el rango salarial mas común por encuesta?
 
+![query4](imagenes/query4.PNG)
+
+    Una vez se homologaron los salarios en rangos salariales, se observa que en los primeros años los salarios eran mucho mayores debido a que no tantos países respondían la encuesta. Una vez se incorporaron más países, el rango salarial disminuyó, a excepción del 2017, donde se muestra un incremento en el rango de compensaciones.
+    
 
 6. ¿Cuáles son las tres pincipales ocupaciones por encuesta?
 
+![query5](imagenes/query5.PNG)
+
+    Se observa que en casi todos los años, los estudiantes o profesionales no dedicados al desarrollo de código son los que más respondieron las encuestas. Cabe notar que para el año 2017 se creo la opción de "Desarrollador profesional", ocupación que puede contener muchas otras, explicando así el dato atípico para dicho año. 
 
 7. ¿Cuáles son las tres principales ocupaciones por pais? **(Jhon)**
 
 
 8. ¿Cuál es el principal rango salarial en cada país de los diez países con más respuestas?
 
+![query7](imagenes/query7.PNG)
+
+    Los países con más nivel de desarrollo económico como Estados Unidos, Reino Unido y Australia, presentan los salarios más grandes, mientras que países menos desarrollados como India y Polonía registran menores rangos salariales. 
 
 9. ¿Cuál es el lenguaje con más crecimiento en las encuestas? **(Jhon)** ***(Muy importante para la predicción)***
 
 
 10. ¿Cuál es el lenguaje mas popular en cada país de los diez países con mas programadores?
 
+![query9](imagenes/query9.PNG)
+
+    Se observa que JavaScript es el lenguaje preponderante en cada uno de los países, ocupando entre el 30 % y el 50 % del total de personas que respondieron la encuesta en cada país. Solo en "Europa: otro" se observa mayor participación por SQL.
 
 11. ¿Cuáles son las cinco ocupaciones más populares de los programadores que dominan *Python* por encuesta? **(Jhon)**
 
 
 12. ¿Cuáles son las tres ocupaciones con más programadores en los dos más altos rangos salariales?
 
+<center>
+
+![query10_2](imagenes/query10_2.PNG)
+
+</center>
+
+    Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o dedicarse completamente al desarrollo en entorno Web.
 
 13. ¿Cuál es el país más experto e inexperto programando por encuesta? **(Jhon)**
 
 
 14. ¿Cuál es el número promedio de lenguajes que saben los programadores por encuesta?
 
+![query12](imagenes/query12.PNG)
+
+    Se observa que, en promedio, las personas que contestaron la encuesta dominan entre 3 y 8 lenguajes de programación. Este dato es muy variante entre los años debido a las opciones de respuesta que tienen las preguntas relacionadas con los lenguajes o tecnologías que dominan. Se observa que para 2013 y 2014, estas respuestas eran muy específicas (alrededor de 10 posibles), mientras que de 2015 en adelante se presentan más de 30 opciones. 
+
+
+También es de interés conocer algunos datos puntuales acerca de *Colombia* y su participación en las encuestas de *Stack Overflow*
+<br>
 
 15. ¿Cuánto es el salario más común en Colombia por encuesta?
+
+![query13](imagenes/query13.PNG)
+
+    Los encuestados solo respondieron que son de Colombia a partir del año 2014. Se observa que el rango salarial más común es Less than 20K, mientras que para el año 2017 se presentan salarios muy elevados, similar a la distribución a nivel global.
 
 
 16. ¿Cuál es la ocupacion más popular en Colombia por encuesta? **(Jhon)**
@@ -264,6 +305,9 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
 
+![query15](imagenes/query15.PNG)
+
+    En Colombia, el lenguaje de programación más popular es JavaScript y muestra una clara tendencia de crecimiento, mientras que SQL en su versión estandar o MySQL también ocupa una posición importante. 
 
 [Regresar](#índice)
 
@@ -283,7 +327,11 @@ Como existen muchas categorías por dimensión, se toman los años 2011, 2012 y 
 
 *<center> Imagen del modelo del cubo </center>*
 
+<center>
+
 ![Imagen del cubo](imagenes/modelo-cubo.PNG)
+
+</center>
 
 ***Modelo de estrella***
 
@@ -291,7 +339,11 @@ Para este modelo se identifican todas las dimensiones (o columnas para como se c
 
 *<center> Imagen del modelo de estrella </center>*
 
+<center>
+
 ![Imagen de estrella](imagenes/Estrella.PNG)
+
+</center>
 
 ***Modelo de Malinowski***
 
@@ -299,7 +351,26 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 
 *<center> Imagen del modelo de Malinowski </center>*
 
+<center>
+
 ![Imagen de Malinowski](imagenes/Malinowski.PNG)
+
+</center>
 
 [Regresar](#índice)
 
+### **Pronóstico 2018**
+
+Uno de los objetivos de este trabajo es pronosticar los resultados de la encuesta del año 2018 utilizando una tabla de la bodega de datos con al menos 50.000 registros. Para el desarrollo de este objetivo, se tomará el conjuto de datos completo y los siguientes supuestos de crecimiento.
+
+*Nota:* los resultados de las encuestas 2018 y 2019 están disponibles en la [sitio oficial](https://insights.stackoverflow.com/survey) de Stack Overflow. Sin embargo, no se tomarán en cuenta dichas encuestas ni los resultados para establecer los pronósticos ni retroalimentarlos.
+
+#### Supuestos
+
+Lo primero que hay que pronosticar es cuántas personas podrían responder la encuesta para el año 2018. Para ello, se tomará una tendencia lineal de la cantidad de personas que respondieron la encuesta. 
+
+| columna | criterio |
+| --- | --- |
+| country | 
+
+[Regresar](#índice)
