@@ -1,11 +1,11 @@
 # <center> Trabajo final Sistema de Bases de Datos Masivos </center>
 
-## <center> Análisis de las encuestas de Stack Overflow entre los años 2011 y 2017 </center>
+## <center> Análisis de las encuestas de Stack Overflow 2011-2017 </center>
 
 ---
 
-### <center> Posgrado de Analítica, 2019-1 </center>
-###  <center> Integrantes </center>​<br>
+### <center> Posgrado de Analítica 2019-1 </center>
+###  <center> Integrantes: </center>​<br>
 <center> Jhon Anderson Londoño Herrera<br>
 Juan Pablo Trujillo Alviz 
 </center><br>
@@ -18,32 +18,36 @@ Juan Pablo Trujillo Alviz
 
 ---
 
-1. [Motivación](#motivación)
+1. [Motivación](#1-motivación)
 
-    1.1. [Licenciamiento](#licenciamiento)
+    1.1. [Licenciamiento](#11-licenciamiento)
 
-2. [Metodología](#metodología)
+2. [Metodología](#2-metodología)
 
-3. [Desarrollo](#desarrollo)
+3. [Desarrollo](#3-desarrollo)
 
-    3.1. [Establecer conexión](#establecer-conexión)
+    3.1. [Revisión de las encuestas](#31-revisión-de-las-encuestas)
 
-    3.2. [Limpieza de tablas](#unificación-y-limpieza-de-las-tablas)
+    3.2. [Limpieza de tablas](#32-unificación-y-limpieza-de-las-tablas)
 
-    3.3. [Preguntas y respuestas](#preguntas-y-respuestas)
+    3.3. [Preguntas y respuestas](#33-preguntas-y-respuestas)
 
-    3.4. [Representación visual de la bodega de datos](#representación-visual-de-la-bodega-de-datos)
+    3.4. [Representación visual de la bodega de datos](#34-representación-visual-de-la-bodega-de-datos)
 
-    3.5 [Pronóstico de la encuesta 2018](#pronóstico-2018)
+    3.5 [MapReduce: lenguajes por programador](#35-número-de-programadores-por-lenguaje-de-programación-utilizando-la-metodología-de-mapreduce)
 
-4. [URL's de interés](#urls-de-interes)
+    3.6 [Pronóstico de la encuesta 2018](#36-pronóstico-2018)
+
+    3.7 [Actualización de la bodega de datos](#37-actualización-de-la-bodega-de-datos)
+
+4. [URL's de interés](#4-urls-de-interes)
 
 <br>
 
-## **Motivación**
+## **1. Motivación**
 ---
 
-Este es el trabajo final del módulo Sistemas de Bases de Datos Masivos del posgrado de Analítica de la Universidad Nacional de Colombia, Sede Medellín. La guía del módulo puede ser consultado en esta [página web](https://sebastian-gomez.com/bigdata/) creada por el profesor MsC. Sebastián Gómez. El trabajo final, sus preguntas y lineamientos pueden ser consultados [aquí](https://drive.google.com/file/d/18uzP5uGg7OhbEDQIECtT8XtA4jr3NTf9/view).
+Este es el trabajo final del módulo Sistemas de Bases de Datos Masivos del posgrado de Analítica de la Universidad Nacional de Colombia, Sede Medellín. La guía del módulo puede ser consultada en esta [página web](https://sebastian-gomez.com/bigdata/) creada por el profesor MsC. Sebastián Gómez. El trabajo final, sus preguntas y lineamientos pueden ser consultados [aquí](https://drive.google.com/file/d/18uzP5uGg7OhbEDQIECtT8XtA4jr3NTf9/view).
 
 >Analizar tendencias dentro del mundo de la tecnología se ha convertido en uno de los más grandes retos de la industria, prever cuál será el siguiente y más éxitoso lenguaje de programación o cuál sería el salario ideal para un desarrollador por tecnología se convertirá en una tarea crítica durante los próximos años. Stack Overflow es un sitio web ampliamente utilizado por la comunidad de desarrolladores de software, en la cual otros desarrolladores pueden encontrar soluciones a problemas de programación en diferentes lenguajes. Este sitio realiza desde el 2011 una encuesta a sus usuarios para observar y analizar tendencias en la industria de la tecnología y el software: https://insights.stackoverflow.com/survey/2019. La más reciente fue durante el mismo 2019. 
 
@@ -53,25 +57,23 @@ Las encuestas pueden ser consultadas a través de *Google Cloud BigQuery* o est�
 
 [Regresar](#índice)
 
-### **Licenciamiento**
+### **1.1. Licenciamiento**
 
-Todas las encuestas desde el 2011 al 2019 están disponibles [aquí](https://insights.stackoverflow.com/survey).
+Las bases de datos de las encuestas son publicadas a través de la Licencia de Bases de Datos Abiertas (`ODbL` por sus siglas en inglés) y los términos y condiciones pueden ser consultados [aquí](http://opendatacommons.org/licenses/odbl/1.0/), mientras que todos los derechos individuales sobre el contenido de la base de datos están licenciados a través de la Licencia de Contenido de Bases de Datos (`DbCL` por sus siglas en inglés) y los términos y condiciones pueden ser consultados [aquí](http://opendatacommons.org/licenses/dbcl/1.0/).
 
-Estas bases de datos son publicables a través de la Licencia de Bases de Datos Abiertas (ODbL por sus siglas en inglés) y los términos y condiciones pueden ser consultados [aquí](http://opendatacommons.org/licenses/odbl/1.0/), mientras que todos los derechos individuales sobre el contenido de la base de datos están licenciados a través de la Licencia de Contenido de Bases de Datos (DbCL por sus siglas en inglés) y los términos y condiciones pueden ser consultados [aquí](http://opendatacommons.org/licenses/dbcl/1.0/).
-
-Este tipo de licenciamiento da derecho a compartir, adaptar y crear trabajos derivados de las encuestas mientras se le atribuya toda la fuente a Stack Overflow, se mantenga abierta la base de datos resultante y continúe con el licenciamiento ODbL.
+Este tipo de licenciamiento da derecho a compartir, adaptar y crear trabajos derivados de las encuestas mientras se le atribuya toda la fuente a Stack Overflow, se mantenga abierta la base de datos resultante y continúe con el licenciamiento `ODbL`.
 
 **Agradecimientos**
 
-La fuente primaria de las bases de datos consultadas es Stack Overflow y contiene información sobre las encuestas realizadas por esta organización. La base de datos resultante, que en este documento se llama "encuestas", así como todos los resultados obtenidos de ella, están disponible gracias a la Licencia de Bases de Datos Abiertas ([ODbL](https://opendatacommons.org/licenses/odbl/1.0/)).
+La fuente primaria de las bases de datos consultadas es Stack Overflow y contiene información sobre las encuestas realizadas por esta organización. La base de datos resultante, que en este documento se llama "encuestas", así como todos los resultados obtenidos de ella, están disponible gracias a la Licencia de Bases de Datos Abiertas `ODbL`.
 <br>
 
 [Regresar](#índice)
 
-## **Metodología**
+## **2. Metodología**
 ---
 
-Para el desarrollo de este trabajo se propone utilizar el lenguaje de programación libre *Python* en su versión 3.7 de *IPython* y el editor de cuadernos de código, igualmente libre, de *Jupyter* a través de *Google Colab*. En caso de que se vaya a utilizar directamente el código de manera remota, se propone utilizar *Jupyter* a través de la instalación del software libre [*Anaconda Navigator*](https://www.anaconda.com/distribution/) ya que viene predeterminado con los paquetes de *Python* más comunes para realizar ciencia de datos con los binarios apropiados para la máquina donde se instale. 
+Para el desarrollo de este trabajo se propone utilizar el lenguaje de programación libre *Python* en su versión 3.7 de *IPython* y el editor de cuadernos de código, igualmente libre, de *Jupyter* a través de *Google Colab*. En caso de que se vaya a utilizar directamente el código de manera loval, se propone utilizar *Jupyter* a través de la instalación del software libre [*Anaconda Navigator*](https://www.anaconda.com/distribution/), ya que viene predeterminado con los paquetes de *Python* más comunes para realizar ciencia de datos con los binarios apropiados para la máquina donde se instale. 
 
 **Instalar paquetes necesarios**
 
@@ -106,7 +108,7 @@ cliente = bigquery.Client(credentials = credenciales, project = id_proyecto)
 
 **Establecer conexión desde Google Colab**
 
-En caso que esté ejecutando los comandos en *Google Colab*, es necesario realizar la carga del archivo a *Google Drive* y se llama de la siguiente forma.
+En caso que esté ejecutando los comandos en *Google Colab*, es necesario realizar la carga del archivo a *Google Drive* y se llama de la siguiente forma:
 
 ```terminal
 # subir el archivo de credenciales a su google drive
@@ -160,26 +162,28 @@ tabla.head()
 
 * Para más información sobre cómo cargar archivos a Google Colab, [dar click aquí](https://colab.research.google.com/notebooks/io.ipynb#scrollTo=u22w3BFiOveA).
 
-<br>
-
 [Regresar](#índice)
 
-## **Desarrollo**
+## **3. Desarrollo**
 ---
 
-### **Estado actual de las tablas de las encuestas**
+El cuaderno de *Jupyter* con el código de programación en *Python* está disponible en este [enlace](https://github.com/Juapatral/encuestas-stack-overflow/blob/master/trabajo_final_sbdm_20191.ipynb). 
+
+### **3.1. Revisión de las encuestas**
+
+#### Estado actual de las tablas de las encuestas
 
 Se realiza la consulta a través de *Google BigQuery* utilizando una cuenta educativa para acceder a la información de las encuestas de Stack Overflow de los años 2011 a 2017.
 
-Las encuestas entre los años 2011 a 2015 cuentan con una estructura similar: si la pregunta es de una única respuesta, esta se guarda en una sola columna, mientras que si la pregunta permitía múltiples respuestas, e.g. seleccione de los siguientes los lenguajes de programación que domine, cada una de las posibles respuestas se guarda en una columna. Los nombres de las columnas son genéricos (*string_field_**n***, donde *n* es el número de la columna), las preguntas y sus posibles respuestas están, en general, en las primeras dos filas de cada conjunto de datos.
+Las encuestas entre los años 2011 a 2015 cuentan con una estructura similar. Si la pregunta es de una única respuesta, esta se guarda en una sola columna; mientras que si la pregunta permitía múltiples respuestas, es decir, si la pregunta es *seleccione todos los lenguajes de programación que domine de la siguiente lista*, cada una de las posibles respuestas se guarda en una columna. Los nombres de las columnas son genéricos (*string_field_**n***, donde *n* es el número de la columna), las preguntas y sus posibles respuestas están, en general, en las primeras dos filas de cada conjunto de datos.
 
 Las encuestas de los años 2016 y 2017 manejan un esquema similar donde los nombres de las columnas corresponden a las preguntas. Si la pregunta contiene múltiples respuestas, estas se guardan en una sola columna separadas por un punto y coma (";").
 
-Finalmente, las preguntas y respuestas varían año a año, tanto en la estructura gramatical de cada una como en el número total de preguntas. Los conjuntos de datos cuentan entre 50 campos (el más corto) hasta más de 200 campos (el más largo).
+Finalmente, las preguntas y respuestas varían año a año, tanto en la estructura gramatical de cada una como en el número total de preguntas. Los conjuntos de datos tienen entre 50 campos (el más corto) hasta más de 200 campos (el más largo).
 
-### **Identificación de campos en común a trabajar**
+#### Identificación de campos en común a trabajar
 
-Los esquemas de las encuestas son variantes a lo largo de los años, por lo que se requiere una verificación, en su mayor parte manual, de las preguntas y respuestas comunes entre los años a analizar. 
+Los esquemas de las encuestas son variantes a lo largo de los años, por lo que se requiere una verificación (en su mayor parte manual) de las preguntas y respuestas comunes entre los años a analizar. 
 
 Por esta razón, se eligen las siguientes variables comunes:
 
@@ -191,11 +195,11 @@ Por esta razón, se eligen las siguientes variables comunes:
 
 [Regresar](#índice)
 
-### **Unificación y limpieza de las tablas**
+### **3.2. Unificación y limpieza de las tablas**
 
 Cada encuesta presenta diferentes tipos de datos para cada una de las variables, por lo que se realizó un proceso de limpieza y homologación de datos utilizando funciones de los paquetes de *re*, *numpy*, *itertools* y *pandas*, además de crear unas funciones propias para automatizar el proceso. 
 
-Este proceso de limpieza puede ser consultado en el cuaderno de *Jupyter*, accesible **[aquí PENDIENTE](https://google.com)**, en la subsección de *Limpieza de las tablas*.
+Este proceso de limpieza puede ser consultado en el cuaderno de [***Jupyter***](https://github.com/Juapatral/encuestas-stack-overflow/blob/master/trabajo_final_sbdm_20191.ipynb), en la subsección de *Limpieza de las tablas*.
 
 Después de la limpieza de cada una de las encuestas, el resultado es la bodega de datos ***encuestas*** que cuenta con una única tabla con el siguiente esquema:
 
@@ -210,7 +214,7 @@ Después de la limpieza de cada una de las encuestas, el resultado es la bodega 
 
 [Regresar](#índice)
 
-### **Preguntas y respuestas**
+### **3.3. Preguntas y respuestas**
 
 ~~En esta sección van las preguntas, las imágenes de las respuestas y un corto enunciado. Todavía no está terminado~~
 
@@ -218,13 +222,13 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 1. ¿Cuántas personas respondieron cada encuesta?
 
-    ![query0](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query0.PNG)
+    ![query0](imagenes/query0.PNG)
 
     >Se observa que la cantidad de personas que respondieron la encuesta es creciente en el tiempo, donde en el 2011 respondieron un poco menos de 3 mil personas, mientras que en los dos últimos años fueron más de 50 mil. 
 
 2. ¿Cuáles son los diez países que más respondieron las encuestas?
 
-    ![query1](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query1.PNG)
+    ![query1](imagenes/query1.PNG)
 
     >Estados Unidos de América es el país con mayor número de encuestados (cerca de 38 mil). Le siguen India y Reino Unido con un aproximado de 15 mil encuestados cada uno. Esto se ve reflejado en la industria tecnológica y de servicios de telecomunicaciones que tienen cada uno de estos países.
 
@@ -236,14 +240,14 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 5. ¿Cuál es el rango salarial mas común por encuesta?
 
-    ![query4](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query4.PNG)
+    ![query4](imagenes/query4.PNG)
 
     >Una vez se homologaron los salarios en rangos salariales, se observa que en los primeros años los salarios eran mucho mayores debido a que no tantos países respondían la encuesta. Una vez se incorporaron más países, el rango salarial disminuyó, a excepción del 2017, donde se muestra un incremento en el rango de compensaciones.
     
 
 6. ¿Cuáles son las tres pincipales ocupaciones por encuesta?
 
-    ![query5](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query5.PNG)
+    ![query5](imagenes/query5.PNG)
 
     >Se observa que en casi todos los años, los estudiantes o profesionales no dedicados al desarrollo de código son los que más respondieron las encuestas. Cabe notar que para el año 2017 se creo la opción de "Desarrollador profesional", ocupación que puede contener muchas otras, explicando así el dato atípico para dicho año. 
 
@@ -252,7 +256,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 8. ¿Cuál es el principal rango salarial en cada país de los diez países con más respuestas?
 
-    ![query7](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query7.PNG)
+    ![query7](imagenes/query7.PNG)
 
     >Los países con más nivel de desarrollo económico como Estados Unidos, Reino Unido y Australia, presentan los salarios más grandes, mientras que países menos desarrollados como India y Polonía registran menores rangos salariales. 
 
@@ -261,7 +265,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 10. ¿Cuál es el lenguaje mas popular en cada país de los diez países con mas programadores?
 
-    ![query9](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query9.PNG)
+    ![query9](imagenes/query9.PNG)
 
     >Se observa que JavaScript es el lenguaje preponderante en cada uno de los países, ocupando entre el 30 % y el 50 % del total de personas que respondieron la encuesta en cada país. Solo en "Europa: otro" se observa mayor participación por SQL.
 
@@ -270,10 +274,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 12. ¿Cuáles son las tres ocupaciones con más programadores en los dos más altos rangos salariales?
 
-    <center>
-
-    ![query10_2](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query10_2.PNG)
-    </center>
+    ![query11](imagenes/query11.PNG)
 
     >Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o dedicarse completamente al desarrollo en entorno Web.
 
@@ -282,7 +283,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 14. ¿Cuál es el número promedio de lenguajes que saben los programadores por encuesta?
 
-    ![query12](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query12.PNG)
+    ![query13](imagenes/query13.PNG)
 
     >Se observa que, en promedio, las personas que contestaron la encuesta dominan entre 3 y 8 lenguajes de programación. Este dato es muy variante entre los años debido a las opciones de respuesta que tienen las preguntas relacionadas con los lenguajes o tecnologías que dominan. Se observa que para 2013 y 2014, estas respuestas eran muy específicas (alrededor de 10 posibles), mientras que de 2015 en adelante se presentan más de 30 opciones.
     También es de interés conocer algunos datos puntuales acerca de *Colombia* y su participación en las encuestas de *Stack Overflow*
@@ -290,7 +291,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 15. ¿Cuánto es el salario más común en Colombia por encuesta?
 
-    ![query13](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query13.PNG)
+    ![query14](imagenes/query14.PNG)
 
     >Los encuestados solo respondieron que son de Colombia a partir del año 2014. Se observa que el rango salarial más común es Less than 20K, mientras que para el año 2017 se presentan salarios muy elevados, similar a la distribución a nivel global.
 
@@ -300,13 +301,13 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
 
-    ![query15](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query15.PNG)
+    ![query15](imagenes/query16.PNG)
 
     >En Colombia, el lenguaje de programación más popular es JavaScript y muestra una clara tendencia de crecimiento, mientras que SQL en su versión estandar o MySQL también ocupa una posición importante. 
 
 [Regresar](#índice)
 
-### **Representación visual de la bodega de datos**
+### **3.4. Representación visual de la bodega de datos**
 
 A continuación se representa de forma gráfica la estructura de la bodega de datos a través de tres modelos: Cubo, Estrella y Malinowski.
 
@@ -323,7 +324,7 @@ Como existen muchas categorías por dimensión, se toman los años 2011, 2012 y 
 *<center> Imagen del modelo del cubo </center>*
 
 
-![Imagen del cubo](https://juapatral.github.io/encuestas-stack-overflow/imagenes/modelo-cubo.PNG)
+![Imagen del cubo](imagenes/modelo-cubo.PNG)
 
 
 ***Modelo de estrella***
@@ -332,7 +333,7 @@ Para este modelo se identifican todas las dimensiones (o columnas para como se c
 
 *<center> Imagen del modelo de estrella </center>*
 
-![Imagen de estrella](https://juapatral.github.io/encuestas-stack-overflow/imagenes/Estrella.PNG)
+![Imagen de estrella](imagenes/Estrella.PNG)
 
 
 ***Modelo de Malinowski***
@@ -347,7 +348,13 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 
 [Regresar](#índice)
 
-### **Pronóstico 2018**
+### **3.5. Número de programadores por lenguaje de programación utilizando la metodología de MapReduce**
+
+~~Espacio para escribir: **Jhon**~~
+
+[Regresar](#índice)
+
+### **3.6. Pronóstico 2018**
 
 Uno de los objetivos de este trabajo es pronosticar los resultados de la encuesta del año 2018 utilizando una tabla de la bodega de datos con al menos 50.000 registros. Para el desarrollo de este objetivo, se tomará el conjuto de datos completo y los siguientes supuestos de crecimiento.
 
@@ -357,8 +364,64 @@ Uno de los objetivos de este trabajo es pronosticar los resultados de la encuest
 
 Lo primero que hay que pronosticar es cuántas personas podrían responder la encuesta para el año 2018. Para ello, se tomará una tendencia lineal de la cantidad de personas que respondieron la encuesta. 
 
+Para las variables de interés se tienen los siguientes supuestos:
+
 | columna | criterio |
 | --- | --- |
-| country | 
+| country | Participación de cada país a lo largo de los años.|
+| years_programming | Participación de cada rango de experiencia y su tasa de crecimiento.|
+| occupation | Participación de cada ocupación y su tasa de crecimiento.|
+| salary | Participación por cada país.|
+| programming_language| Tasa de crecimiento de cada uno y promedio de número de lenguajes o tecnologías que domina cada encuestado.| 
 
+#### Resultados preliminares
+
+~~Espacio para escribir: **JP**~~
+
+#### Ejecución del código
+
+~~Espacio para escribir: **JP**~~
+
+[Regresar](#índice)
+
+### **3.7. Actualización de la bodega de datos**
+
+~~Espacio para escribir: **JP** ~~ EL CÓDIGO YA ESTÁ LSITO, FALTA TRANSCRIBIR
+
+A punta de inputs
+
+Después de definir la metodología para ingresar una respuesta más a cualquiera de los años, se recalculan todas las gráficas.
+
+Para este recálculo se utiliza la funcionalidad del *magic* *`%rerun`* de *IPython* de la siguiente manera:
+
+```terminal
+%rerun -g consulta15
+```
+
+Para más información acerca de la funcionalidad el *magic `%rerun`*, dar click [aquí](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-rerun).
+
+
+**Ejemplo**
+
+Se añade el siguiente dato:
+
+|columna|nuevo dato|
+|---|---|
+|survey|2013|
+|country|Colombia|
+|years_programming|Less than 2 years|
+|occupation|Student|
+|salary|Less than 20K|
+|programming_language|Python;R|
+
+Las gráficas de las preguntas que se concentran en Colombia se actualizan de la siguiente forma:
+
+insertar gráficas
+
+Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de imágenes. 
+
+
+[Regresar](#índice)
+
+### **3.8**
 [Regresar](#índice)
