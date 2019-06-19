@@ -273,7 +273,6 @@ De la información de la encuesta se propone responder las siguientes preguntas:
     <center>
 
     ![query10_2](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query10_2.PNG)
-
     </center>
 
     >Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o dedicarse completamente al desarrollo en entorno Web.
@@ -323,11 +322,9 @@ Como existen muchas categorías por dimensión, se toman los años 2011, 2012 y 
 
 *<center> Imagen del modelo del cubo </center>*
 
-<center>
 
 ![Imagen del cubo](https://juapatral.github.io/encuestas-stack-overflow/imagenes/modelo-cubo.PNG)
 
-</center>
 
 ***Modelo de estrella***
 
@@ -335,11 +332,8 @@ Para este modelo se identifican todas las dimensiones (o columnas para como se c
 
 *<center> Imagen del modelo de estrella </center>*
 
-<center>
-
 ![Imagen de estrella](https://juapatral.github.io/encuestas-stack-overflow/imagenes/Estrella.PNG)
 
-</center>
 
 ***Modelo de Malinowski***
 
@@ -347,11 +341,9 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 
 *<center> Imagen del modelo de Malinowski </center>*
 
-<center>
 
 ![Imagen de Malinowski](https://juapatral.github.io/encuestas-stack-overflow/imagenes/Malinowski.PNG)
 
-</center>
 
 [Regresar](#índice)
 
