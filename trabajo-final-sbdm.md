@@ -224,10 +224,9 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 2. ¿Cuáles son los diez países que más respondieron las encuestas?
 
-![query1](imagenes/query1.PNG)
+    ![query1](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query1.PNG)
 
-
->Estados Unidos de América es el país con mayor número de encuestados (cerca de 38 mil). Le siguen India y Reino Unido con un aproximado de 15 mil encuestados cada uno. Esto se ve reflejado en la industria tecnológica y de servicios de telecomunicaciones que tienen cada uno de estos países.
+    >Estados Unidos de América es el país con mayor número de encuestados (cerca de 38 mil). Le siguen India y Reino Unido con un aproximado de 15 mil encuestados cada uno. Esto se ve reflejado en la industria tecnológica y de servicios de telecomunicaciones que tienen cada uno de estos países.
 
 3. ¿Cuántos son los programadores que dominan cada uno de los lenguajes o tecnologías? **(Jhon)**
 
@@ -237,64 +236,64 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 5. ¿Cuál es el rango salarial mas común por encuesta?
 
-![query4](imagenes/query4.PNG)
+    ![query4](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query4.PNG)
 
->Una vez se homologaron los salarios en rangos salariales, se observa que en los primeros años los salarios eran mucho mayores debido a que no tantos países respondían la encuesta. Una vez se incorporaron más países, el rango salarial disminuyó, a excepción del 2017, donde se muestra un incremento en el rango de compensaciones.
+    >Una vez se homologaron los salarios en rangos salariales, se observa que en los primeros años los salarios eran mucho mayores debido a que no tantos países respondían la encuesta. Una vez se incorporaron más países, el rango salarial disminuyó, a excepción del 2017, donde se muestra un incremento en el rango de compensaciones.
     
 
 6. ¿Cuáles son las tres pincipales ocupaciones por encuesta?
 
-![query5](imagenes/query5.PNG)
+    ![query5](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query5.PNG)
 
->Se observa que en casi todos los años, los estudiantes o profesionales no dedicados al desarrollo de código son los que más respondieron las encuestas. Cabe notar que para el año 2017 se creo la opción de "Desarrollador profesional", ocupación que puede contener muchas otras, explicando así el dato atípico para dicho año. 
+    >Se observa que en casi todos los años, los estudiantes o profesionales no dedicados al desarrollo de código son los que más respondieron las encuestas. Cabe notar que para el año 2017 se creo la opción de "Desarrollador profesional", ocupación que puede contener muchas otras, explicando así el dato atípico para dicho año. 
 
 7. ¿Cuáles son las tres principales ocupaciones por pais? **(Jhon)**
 
 
 8. ¿Cuál es el principal rango salarial en cada país de los diez países con más respuestas?
 
-![query7](imagenes/query7.PNG)
+    ![query7](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query7.PNG)
 
->Los países con más nivel de desarrollo económico como Estados Unidos, Reino Unido y Australia, presentan los salarios más grandes, mientras que países menos desarrollados como India y Polonía registran menores rangos salariales. 
+    >Los países con más nivel de desarrollo económico como Estados Unidos, Reino Unido y Australia, presentan los salarios más grandes, mientras que países menos desarrollados como India y Polonía registran menores rangos salariales. 
 
 9. ¿Cuál es el lenguaje con más crecimiento en las encuestas? **(Jhon)** ***(Muy importante para la predicción)***
 
 
 10. ¿Cuál es el lenguaje mas popular en cada país de los diez países con mas programadores?
 
-![query9](imagenes/query9.PNG)
+    ![query9](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query9.PNG)
 
->Se observa que JavaScript es el lenguaje preponderante en cada uno de los países, ocupando entre el 30 % y el 50 % del total de personas que respondieron la encuesta en cada país. Solo en "Europa: otro" se observa mayor participación por SQL.
+    >Se observa que JavaScript es el lenguaje preponderante en cada uno de los países, ocupando entre el 30 % y el 50 % del total de personas que respondieron la encuesta en cada país. Solo en "Europa: otro" se observa mayor participación por SQL.
 
 11. ¿Cuáles son las cinco ocupaciones más populares de los programadores que dominan *Python* por encuesta? **(Jhon)**
 
 
 12. ¿Cuáles son las tres ocupaciones con más programadores en los dos más altos rangos salariales?
 
-<center>
+    <center>
 
-![query10_2](imagenes/query10_2.PNG)
+    ![query10_2](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query10_2.PNG)
 
-</center>
+    </center>
 
->Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o dedicarse completamente al desarrollo en entorno Web.
+    >Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o dedicarse completamente al desarrollo en entorno Web.
 
 13. ¿Cuál es el país más experto e inexperto programando por encuesta? **(Jhon)**
 
 
 14. ¿Cuál es el número promedio de lenguajes que saben los programadores por encuesta?
 
-![query12](imagenes/query12.PNG)
+    ![query12](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query12.PNG)
 
->Se observa que, en promedio, las personas que contestaron la encuesta dominan entre 3 y 8 lenguajes de programación. Este dato es muy variante entre los años debido a las opciones de respuesta que tienen las preguntas relacionadas con los lenguajes o tecnologías que dominan. Se observa que para 2013 y 2014, estas respuestas eran muy específicas (alrededor de 10 posibles), mientras que de 2015 en adelante se presentan más de 30 opciones.
-También es de interés conocer algunos datos puntuales acerca de *Colombia* y su participación en las encuestas de *Stack Overflow*
-<br>
+    >Se observa que, en promedio, las personas que contestaron la encuesta dominan entre 3 y 8 lenguajes de programación. Este dato es muy variante entre los años debido a las opciones de respuesta que tienen las preguntas relacionadas con los lenguajes o tecnologías que dominan. Se observa que para 2013 y 2014, estas respuestas eran muy específicas (alrededor de 10 posibles), mientras que de 2015 en adelante se presentan más de 30 opciones.
+    También es de interés conocer algunos datos puntuales acerca de *Colombia* y su participación en las encuestas de *Stack Overflow*
+    <br>
 
 15. ¿Cuánto es el salario más común en Colombia por encuesta?
 
-![query13](imagenes/query13.PNG)
+    ![query13](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query13.PNG)
 
->Los encuestados solo respondieron que son de Colombia a partir del año 2014. Se observa que el rango salarial más común es Less than 20K, mientras que para el año 2017 se presentan salarios muy elevados, similar a la distribución a nivel global.
+    >Los encuestados solo respondieron que son de Colombia a partir del año 2014. Se observa que el rango salarial más común es Less than 20K, mientras que para el año 2017 se presentan salarios muy elevados, similar a la distribución a nivel global.
 
 
 16. ¿Cuál es la ocupacion más popular en Colombia por encuesta? **(Jhon)**
@@ -302,9 +301,9 @@ También es de interés conocer algunos datos puntuales acerca de *Colombia* y s
 
 17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
 
-![query15](imagenes/query15.PNG)
+    ![query15](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query15.PNG)
 
->En Colombia, el lenguaje de programación más popular es JavaScript y muestra una clara tendencia de crecimiento, mientras que SQL en su versión estandar o MySQL también ocupa una posición importante. 
+    >En Colombia, el lenguaje de programación más popular es JavaScript y muestra una clara tendencia de crecimiento, mientras que SQL en su versión estandar o MySQL también ocupa una posición importante. 
 
 [Regresar](#índice)
 
@@ -326,7 +325,7 @@ Como existen muchas categorías por dimensión, se toman los años 2011, 2012 y 
 
 <center>
 
-![Imagen del cubo](imagenes/modelo-cubo.PNG)
+![Imagen del cubo](https://juapatral.github.io/encuestas-stack-overflow/imagenes/modelo-cubo.PNG)
 
 </center>
 
@@ -338,7 +337,7 @@ Para este modelo se identifican todas las dimensiones (o columnas para como se c
 
 <center>
 
-![Imagen de estrella](imagenes/Estrella.PNG)
+![Imagen de estrella](https://juapatral.github.io/encuestas-stack-overflow/imagenes/Estrella.PNG)
 
 </center>
 
@@ -350,7 +349,7 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 
 <center>
 
-![Imagen de Malinowski](imagenes/Malinowski.PNG)
+![Imagen de Malinowski](https://juapatral.github.io/encuestas-stack-overflow/imagenes/Malinowski.PNG)
 
 </center>
 
