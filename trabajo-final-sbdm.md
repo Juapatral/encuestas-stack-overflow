@@ -218,9 +218,9 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 1. ¿Cuántas personas respondieron cada encuesta?
 
-    ![query0](imagenes/query0.PNG)
+    ![query0](https://juapatral.github.io/encuestas-stack-overflow/imagenes/query0.PNG)
 
->Se observa que la cantidad de personas que respondieron la encuesta es creciente en el tiempo, donde en el 2011 respondieron un poco menos de 3 mil personas, mientras que en los dos últimos años fueron más de 50 mil. 
+    >Se observa que la cantidad de personas que respondieron la encuesta es creciente en el tiempo, donde en el 2011 respondieron un poco menos de 3 mil personas, mientras que en los dos últimos años fueron más de 50 mil. 
 
 2. ¿Cuáles son los diez países que más respondieron las encuestas?
 
