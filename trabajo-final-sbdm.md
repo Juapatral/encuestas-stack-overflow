@@ -1,11 +1,10 @@
-# <center> Trabajo final Sistema de Bases de Datos Masivos </center>
-
-## <center> Análisis de las encuestas de Stack Overflow 2011-2017 </center>
-
+# <center> **Análisis de las encuestas de Stack Overflow 2011-2017** </center>
 ---
 
-### <center> Posgrado de Analítica 2019-1 </center>
-###  <center> Integrantes: </center>​<br>
+### <center> **Posgrado de Analítica 2019-1** </center>
+<center> Sistema de Bases de Datos Masivos </center><br>
+
+###  <center> **Integrantes:** </center>​
 <center> Jhon Anderson Londoño Herrera<br>
 Juan Pablo Trujillo Alviz 
 </center><br>
@@ -49,13 +48,11 @@ Juan Pablo Trujillo Alviz
 
 Este es el trabajo final del módulo Sistemas de Bases de Datos Masivos del posgrado de Analítica de la Universidad Nacional de Colombia, Sede Medellín. La guía del módulo puede ser consultada en esta [página web](https://sebastian-gomez.com/bigdata/) creada por el profesor MsC. Sebastián Gómez. El trabajo final, sus preguntas y lineamientos pueden ser consultados [aquí](https://drive.google.com/file/d/18uzP5uGg7OhbEDQIECtT8XtA4jr3NTf9/view).
 
->Analizar tendencias dentro del mundo de la tecnología se ha convertido en uno de los más grandes retos de la industria, prever cuál será el siguiente y más éxitoso lenguaje de programación o cuál sería el salario ideal para un desarrollador por tecnología se convertirá en una tarea crítica durante los próximos años. Stack Overflow es un sitio web ampliamente utilizado por la comunidad de desarrolladores de software, en la cual otros desarrolladores pueden encontrar soluciones a problemas de programación en diferentes lenguajes. Este sitio realiza desde el 2011 una encuesta a sus usuarios para observar y analizar tendencias en la industria de la tecnología y el software: https://insights.stackoverflow.com/survey/2019. La más reciente fue durante el mismo 2019. 
+>Analizar tendencias dentro del mundo de la tecnología se ha convertido en uno de los más grandes retos de la industria, prever cuál será el siguiente y más éxitoso lenguaje de programación o cuál sería el salario ideal para un desarrollador por tecnología se convertirá en una tarea crítica durante los próximos años. Stack Overflow es un sitio web ampliamente utilizado por la comunidad de desarrolladores de software, en la cual otros desarrolladores pueden encontrar soluciones a problemas de programación en diferentes lenguajes. Este sitio realiza desde el 2011 una encuesta a sus usuarios para observar y analizar tendencias en la industria de la tecnología y el software: https://insights.stackoverflow.com/survey/2019. La más reciente fue durante el mismo 2019.
 
 >Las encuestas han sido cuidadosamente almacenadas y expuestas en directorios de datos abiertos. Para este análisis se utilizarán 7 conjuntos de datos masivos completamente libres y accesibles a través de `BigQuery` que son las encuestas de los años 2011 a 2017.
 
-Las encuestas pueden ser consultadas a través de *Google Cloud BigQuery* o están disponibles de manera gratuita en [este enlace](https://insights.stackoverflow.com/survey). (Importante revisar el licenciamiento de las bases de datos antes de trabajar con ellas)
-
-[Regresar](#índice)
+Las encuestas pueden ser consultadas a través de *Google Cloud BigQuery* o están disponibles de manera gratuita en [este enlace](https://insights.stackoverflow.com/survey).
 
 ### **1.1. Licenciamiento**
 
@@ -73,20 +70,22 @@ La fuente primaria de las bases de datos consultadas es Stack Overflow y contien
 ## **2. Metodología**
 ---
 
-Para el desarrollo de este trabajo se propone utilizar el lenguaje de programación libre *Python* en su versión 3.7 de *IPython* y el editor de cuadernos de código, igualmente libre, de *Jupyter* a través de *Google Colab*. En caso de que se vaya a utilizar directamente el código de manera loval, se propone utilizar *Jupyter* a través de la instalación del software libre [*Anaconda Navigator*](https://www.anaconda.com/distribution/), ya que viene predeterminado con los paquetes de *Python* más comunes para realizar ciencia de datos con los binarios apropiados para la máquina donde se instale. 
+Para el desarrollo de este trabajo se propone utilizar el lenguaje de programación libre *Python* en su versión 3.7 de *IPython* y el editor de cuadernos de código, igualmente libre, de *Jupyter* a través de *Google Colab*. En caso de que se vaya a utilizar directamente el código de manera local, se recomienda utilizar *Jupyter* a través de la instalación del software libre [*Anaconda Navigator*](https://www.anaconda.com/distribution/), ya que viene predeterminado con los paquetes de *Python* más comunes para realizar ciencia de datos y con los binarios apropiados para la máquina donde se instale. 
 
 **Instalar paquetes necesarios**
 
 Se propone utilizar una conexión directa a *Google BigQuery* a través de una API privada, generando las credenciales de acceso. Para ello se utiliza el paquete de *Python google-cloud-bigquery*, el cual se puede instalar ejecutando el comando en la `terminal del equipo`:
 
 ```terminal
-pip install google-cloud.bigquery
+pip install google-cloud-bigquery
 ```
 En caso de que se tenga instalado *Anaconda Navigator*, se recomienda instalar el paquete a través de la sección de ambientes virtuales dentro del navegador o con el  comando dentro de la `terminal de Anaconda Prompt`:
 
 ```terminal
 conda install -c conda-forge google-cloud-bigquery
 ```
+
+Dentro de *Google Colab* no es necesario hacer la instalación ya que viene dentro de los paquetes predeterminados.
 
 **Establecer conexión desde equipo local**
 
@@ -108,11 +107,10 @@ cliente = bigquery.Client(credentials = credenciales, project = id_proyecto)
 
 **Establecer conexión desde Google Colab**
 
-En caso que esté ejecutando los comandos en *Google Colab*, es necesario realizar la carga del archivo a *Google Drive* y se llama de la siguiente forma:
+En caso que esté ejecutando los comandos en *Google Colab*, es necesario realizar la carga del archivo a *Google Drive* y se establece la conexión de la siguiente forma:
 
 ```terminal
 # subir el archivo de credenciales a su google drive
-# para mas informacion ir a la seccion de anexos dentro de metodologia
 
 # importar la libreria google.colab
 from google.colab import drive
@@ -125,6 +123,8 @@ cd gdrive/'My drive'/
 
 # cargar el archivo de credenciales desde Drive
 credenciales = service_account.Credentials.from_service_account_file('path/filename.json')
+
+# para mas informacion ir a la seccion de anexos dentro de metodologia
 ```
 
 **Ejecutar queries**
@@ -132,10 +132,12 @@ credenciales = service_account.Credentials.from_service_account_file('path/filen
 Una vez la conexión sea exitosa, se pueden ejecutar las rutinas de SQL de la siguiente forma:
 
 ```terminal
+# Seleccionar todo de la tabla 'Tabla' dentro de la bodega 'BodegaDeDatos'
+
 # se escribe el query como texto crudo
 query = '''
 SELECT *
-FROM `dataset.table`
+FROM `BodegaDeDatos.Tabla`
 '''
 
 # se ejecuta el query
@@ -144,13 +146,14 @@ consulta = cliente.query(query)
 # se traen los resultados como un objeto Rowiterator
 resultado = consulta.result()
 
-# si se quiere visualizar los resultados como un dataframe de pandas
+# si se quiere visualizar los resultados como un DataFrame de Pandas
 import pandas as pd
 
 tabla = resultado.to_dataframe()
 tabla.head()
 ```
-<br>
+
+Si sigue el proceso descrito, se tendrá la información de `Tabla` en la variable *tabla* como un DataFrame.
 
 **Anexos**
 
