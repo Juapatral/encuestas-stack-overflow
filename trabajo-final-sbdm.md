@@ -75,7 +75,7 @@ Para el desarrollo de este trabajo se propone utilizar el lenguaje de programaci
 
 **Instalar paquetes necesarios**
 
-Se propone utilizar una conexión directa a *Google BigQuery* a través de una API privada, generando las credenciales de acceso. Para ello se utiliza el paquete de *Python google-cloud-bigquery*, el cual se puede instalar ejecutando el comando en la `terminal del equipo`:
+Se propone utilizar una conexión directa a *Google Cloud BigQuery* a través de una API privada, generando las credenciales de acceso. Para ello se utiliza el paquete de *Python google-cloud-bigquery*, el cual se puede instalar ejecutando el comando en la `terminal del equipo`:
 
 ```terminal
 pip install google-cloud-bigquery
@@ -177,11 +177,11 @@ El cuaderno de *Jupyter* con el código de programación en *Python* está dispo
 
 #### Estado actual de las tablas de las encuestas
 
-Se realiza la consulta a través de *Google BigQuery* utilizando una cuenta educativa para acceder a la información de las encuestas de Stack Overflow de los años 2011 a 2017.
+Se realiza la consulta a través de *Google CLoud BigQuery*, utilizando una cuenta educativa para acceder a la información de las encuestas de Stack Overflow de los años 2011 a 2017.
 
-Las encuestas entre los años 2011 a 2015 cuentan con una estructura similar. Si la pregunta es de una única respuesta, esta se guarda en una sola columna; mientras que si la pregunta permitía múltiples respuestas, es decir, si la pregunta es *seleccione todos los lenguajes de programación que domine de la siguiente lista*, cada una de las posibles respuestas se guarda en una columna. Los nombres de las columnas son genéricos (*string_field_**n***, donde *n* es el número de la columna), las preguntas y sus posibles respuestas están, en general, en las primeras dos filas de cada conjunto de datos.
+Las encuestas entre los años 2011 a 2015 cuentan con una estructura similar. Si la pregunta es de una única respuesta, esta se guarda en una sola columna; mientras que si la pregunta permite múltiples respuestas, por ejemplo *"seleccione todos los lenguajes de programación que domine de la siguiente lista"*, cada una de las posibles respuestas se guarda en una columna. Los nombres de las columnas son genéricos (*string_field_**n***, donde *n* es el número de la columna), las preguntas y sus posibles respuestas están, en general, en las primeras dos filas de cada conjunto de datos.
 
-Las encuestas de los años 2016 y 2017 manejan un esquema similar donde los nombres de las columnas corresponden a las preguntas. Si la pregunta contiene múltiples respuestas, estas se guardan en una sola columna separadas por un punto y coma (";").
+Las encuestas de los años 2016 y 2017 manejan un esquema similar, donde los nombres de las columnas corresponden a las preguntas. Si la pregunta contiene múltiples respuestas, estas se guardan en una sola columna separadas por un punto y coma (";").
 
 Finalmente, las preguntas y respuestas varían año a año, tanto en la estructura gramatical de cada una como en el número total de preguntas. Los conjuntos de datos tienen entre 50 campos (el más corto) hasta más de 200 campos (el más largo).
 
@@ -228,7 +228,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
     ![query0](imagenes/query0.PNG)
 
-    >Se observa que la cantidad de personas que respondieron la encuesta es creciente en el tiempo, donde en el 2011 respondieron un poco menos de 3 mil personas, mientras que en los dos últimos años fueron más de 50 mil. 
+    >Se observa que la cantidad de personas que respondieron la encuesta es creciente en el tiempo. En el 2011 respondieron un poco menos de 3 mil personas, mientras que en los dos últimos años fueron más de 50 mil. 
 
 2. ¿Cuáles son los diez países que más respondieron las encuestas?
 
@@ -276,11 +276,11 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 11. ¿Cuáles son las cinco ocupaciones más populares de los programadores que dominan *Python* por encuesta? **(Jhon)**
 
 
-12. ¿Cuáles son las tres ocupaciones con más programadores en los dos más altos rangos salariales?
+12. Dentro de los dos rangos salariales más altos, ¿cuáles son las tres ocupaciones con mayor número  de programadores?
 
     ![query11](imagenes/query11.PNG)
 
-    >Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o dedicarse completamente al desarrollo en entorno Web.
+    >Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o completamente al desarrollo en entorno Web.
 
 13. ¿Cuál es el país más experto e inexperto programando por encuesta? **(Jhon)**
 
@@ -406,16 +406,18 @@ Se propone realizar la inscripción de cada respuesta a través de una entrada d
  Para ingresar el registro validado a la tabla *encuestas*, se puede ejecutar el siguiente código:
 
 ```terminal
-# crear nuevo dato
+# se ingresa el nuevo dato
 nuevo_dato = ingresar_registro()
 
-# validar si el dato no es vacío
+# se verifica si el dato es valido
 if nuevo_dato is None:
     print('\nIngrese datos correctos por favor')
-
+    
 else:
-    # adicionar a encuestas
-    encuestas = pd.concat(encuestas,nuevo_dato)
+    encuestas = pd.concat([encuestas,nuevo_dato], ignore_index = True)
+
+# se devuelve el final de la tabla para verificar ingreso exitoso
+encuestas.tail()
 ```   
 
 Después de definir la metodología para ingresar una respuesta más a cualquiera de los años, se vuelven a hacer todos los cálculos para cada una de las gráficas. Para este recálculo, se utiliza la funcionalidad del *magic* *`%rerun`* de *IPython* de la siguiente manera:
@@ -442,25 +444,25 @@ Se quiere añadir la siguiente respuesta:
 |years_programming|Less than 2 years|
 |occupation|Student|
 |salary|Less than 20K|
-|programming_language|Python;R;Posgress;Tableau|
+|programming_language|Python;R;PostgreSQL;Tableau|
 
 Se ejecuta la función *`ingresar_registro()`* para crear el nuevo objeto de clase *pandas.DataFrame* y después se añade a la tabla de encuestas, utilizando los códigos definidos previamente. Ademas, las gráficas de las preguntas  se actualizan después de ejecutar el *magic %rerun*.
 
 Se presentan dos ejemplos de la actualización de los indicadores:
 
-Para la pregunta 15:
-15. ¿Cuánto es el salario más común en Colombia por encuesta?
+Para la pregunta 15: ¿cuánto es el salario más común en Colombia por encuesta?
 
 ![query14](imagenes/query14.PNG)
 ![query14-v2](imagenes/query14-v2.PNG)
 
+Se observa la creación de una nueva columna para el registro del año 2013, identificando el rango salarial.
 
-Y para la pregunta 17: 
-
-17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
+De forma similar, para la pregunta 17: ¿cuáles son los tres lenguajes más usados en Colombia por encuesta?
 
 ![query16](imagenes/query16.PNG)
 ![query16-v2](imagenes/query16-v2.PNG)
+
+Se agregaron los lenguajes de programación y el año de respuesta de la encuesta al inicio de la gráfica.
 
 Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow). 
 
