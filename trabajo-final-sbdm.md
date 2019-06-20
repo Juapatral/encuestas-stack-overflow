@@ -1,10 +1,11 @@
-# <center> **Análisis de las encuestas de Stack Overflow 2011-2017** </center>
+# **<center> Análisis de las encuestas de Stack Overflow 2011-2017 </center>**
 ---
 
-### <center> **Posgrado de Analítica 2019-1** </center>
+### **<center> Posgrado de Analítica 2019-1 </center>**
 <center> Sistema de Bases de Datos Masivos </center><br>
 
-###  <center> **Integrantes:** </center>​
+###  **<center> Integrantes: </center>**
+​
 <center> Jhon Anderson Londoño Herrera<br>
 Juan Pablo Trujillo Alviz 
 </center><br>
@@ -37,7 +38,7 @@ Juan Pablo Trujillo Alviz
 
     3.6 [Pronóstico de la encuesta 2018](#36-pronóstico-2018)
 
-    3.7 [Actualización de la bodega de datos](#37-actualización-de-la-bodega-de-datos)
+    3.7 [Incremento de la bodega de datos](#37-incremento-de-la-bodega-de-datos)
 
 4. [URL's de interés](#4-urls-de-interes)
 
@@ -304,7 +305,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
 17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
 
-    ![query15](imagenes/query16.PNG)
+    ![query16](imagenes/query16.PNG)
 
     >En Colombia, el lenguaje de programación más popular es JavaScript y muestra una clara tendencia de crecimiento, mientras que SQL en su versión estandar o MySQL también ocupa una posición importante. 
 
@@ -361,7 +362,7 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 
 Uno de los objetivos de este trabajo es pronosticar los resultados de la encuesta del año 2018 utilizando una tabla de la bodega de datos con al menos 50.000 registros. Para el desarrollo de este objetivo, se tomará el conjuto de datos completo y los siguientes supuestos de crecimiento.
 
-*Nota:* los resultados de las encuestas 2018 y 2019 están disponibles en la [sitio oficial](https://insights.stackoverflow.com/survey) de Stack Overflow. Sin embargo, no se tomarán en cuenta dichas encuestas ni los resultados para establecer los pronósticos ni retroalimentarlos.
+*Nota:* los resultados de las encuestas 2018 y 2019 están disponibles en el [sitio oficial](https://insights.stackoverflow.com/survey) de Stack Overflow. Sin embargo, no se tomarán en cuenta dichas encuestas ni sus resultados para establecer los pronósticos.
 
 #### Supuestos
 
@@ -379,34 +380,60 @@ Para las variables de interés se tienen los siguientes supuestos:
 
 #### Resultados preliminares
 
-~~Espacio para escribir: **JP**~~
+~~Espacio para escribir: **JHON JP**~~
 
 #### Ejecución del código
 
-~~Espacio para escribir: **JP**~~
+~~Espacio para escribir: **JHON JP**~~
 
 [Regresar](#índice)
 
-### **3.7. Actualización de la bodega de datos**
+### **3.7. Incremento de la bodega de datos**
 
-~~Espacio para escribir: **JP** ~~ EL CÓDIGO YA ESTÁ LSITO, FALTA TRANSCRIBIR
+Suponga que, por alguna causa ajena a este ejercicio, una respuesta de una encuesta de alguno de los años quedó por for fuera de la bodega de datos. Es de interés ingresar las respuestas, limpiarlas para que sean acordes al esquema de la tabla *encuestas* y recalcular todos los indicadores definidios en la sección de [Preguntas y respuestas](#33-preguntas-y-respuestas). 
 
-A punta de inputs
+Se propone realizar la inscripción de cada respuesta a través de una entrada definida por el usuario, la cual es validada si cumple con las características de cada tipo de dato. Para ello, se crea una función propia en *Python* con la siguiente documentación:
 
-Después de definir la metodología para ingresar una respuesta más a cualquiera de los años, se recalculan todas las gráficas.
+    '''
+    ingresar_registro()
 
-Para este recálculo se utiliza la funcionalidad del *magic* *`%rerun`* de *IPython* de la siguiente manera:
+    Esta función inicia automáticamente la validación de una nueva respuesta a la tabla encuestas, donde al usuario se le solicita ingresar un dato a la vez. Si el dato es válido, se inicia el proceso de limpieza de dicho 
+    dato. 
+
+    Si todos los datos son válidos, esta función devuelve un pandas.DataFrame con la misma estructura de encuestas. En caso contrario, devuelve None.
+    '''
+
+ Para ingresar el registro validado a la tabla *encuestas*, se puede ejecutar el siguiente código:
 
 ```terminal
+# crear nuevo dato
+nuevo_dato = ingresar_registro()
+
+# validar si el dato no es vacío
+if nuevo_dato is None:
+    print('\nIngrese datos correctos por favor')
+
+else:
+    # adicionar a encuestas
+    encuestas = pd.concat(encuestas,nuevo_dato)
+```   
+
+Después de definir la metodología para ingresar una respuesta más a cualquiera de los años, se vuelven a hacer todos los cálculos para cada una de las gráficas. Para este recálculo, se utiliza la funcionalidad del *magic* *`%rerun`* de *IPython* de la siguiente manera:
+
+```terminal
+# este es un ejemplo para repetir la ultima celda que contenga el patron consulta15
+
 %rerun -g consulta15
 ```
+
+Utilizando este *magic* se pueden realizar nuevamente las gráficas de todas las preguntas y respuestas de la sección *[3.3.](#preguntas-y-respuestas)* 
 
 Para más información acerca de la funcionalidad el *magic `%rerun`*, dar click [aquí](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-rerun).
 
 
 **Ejemplo**
 
-Se añade el siguiente dato:
+Se quiere añadir la siguiente respuesta:
 
 |columna|nuevo dato|
 |---|---|
@@ -415,16 +442,42 @@ Se añade el siguiente dato:
 |years_programming|Less than 2 years|
 |occupation|Student|
 |salary|Less than 20K|
-|programming_language|Python;R|
+|programming_language|Python;R;Posgress;Tableau|
 
-Las gráficas de las preguntas que se concentran en Colombia se actualizan de la siguiente forma:
+Se ejecuta la función *`ingresar_registro()`* para crear el nuevo objeto de clase *pandas.DataFrame* y después se añade a la tabla de encuestas, utilizando los códigos definidos previamente. Ademas, las gráficas de las preguntas  se actualizan después de ejecutar el *magic %rerun*.
 
-insertar gráficas
+Se presentan dos ejemplos de la actualización de los indicadores:
 
-Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de imágenes. 
+Para la pregunta 15:
+15. ¿Cuánto es el salario más común en Colombia por encuesta?
 
+![query14](imagenes/query14.PNG)
+![query14-v2](imagenes/query14-v2.PNG)
+
+
+Y para la pregunta 17: 
+
+17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
+
+![query16](imagenes/query16.PNG)
+![query16-v2](imagenes/query16-v2.PNG)
+
+Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow). 
 
 [Regresar](#índice)
 
-### **3.8**
+### **3.8 Modificación de indicadores**
+
+~~Pendiente definir metodología de actualización de indicadores~~
+
+Después de definir la metodología, se vuelven a calcular cada una de las gráficas definidas para las preguntas y respuestas de la sección *[3.3.](#preguntas-y-respuestas)*
+
+**Ejemplo**
+
+Se quiere actualizar el ~~siguiente indicador~~
+
+~~Se realiza el proceso~~
+
+~~Estos son los resultados~~
+
 [Regresar](#índice)
