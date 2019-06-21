@@ -44,7 +44,7 @@ Juan Pablo Trujillo Alviz
 
 4. [URL's de interés](#4-url-de-interés)
 
-5. [Contacto](#5-contactos)
+5. [Contacto](#5-contacto)
 
 <br>
 
@@ -158,7 +158,7 @@ tabla = resultado.to_dataframe()
 tabla.head()
 ```
 
-Si sigue el proceso descrito, se tendrá la información de `Tabla` en la variable *tabla* como un DataFrame.
+Si se sigue el proceso descrito y es exitoso, se tendrá la información de `Tabla` en la variable *`tabla`* como un DataFrame.
 
 **Anexos**
 
@@ -438,7 +438,7 @@ Después de definir la metodología para ingresar una respuesta más a cualquier
 %rerun -g consulta15
 ```
 
-Utilizando este *magic* se pueden realizar nuevamente las gráficas de todas las preguntas y respuestas de la *[sección 3.3.](#preguntas-y-respuestas)* 
+Utilizando este *magic* se pueden realizar nuevamente las gráficas de todas las preguntas y respuestas de la *[sección 3.3.](#33-preguntas-y-respuestas)* 
 
 Para más información acerca de la funcionalidad el *magic `%rerun`*, dar click [aquí](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-rerun).
 
@@ -530,7 +530,7 @@ Se propone que la modificación de los datos esté dada por la identificación d
 ```
 Al igual que en la *[sección 3.7](#37-incremento-de-la-bodega-de-datos)*, una vez se realizan las modificaciones sobre la bodega de datos se vuelven a hacer todos los cálculos para cada una de las gráficas. Para este recálculo, se utiliza la funcionalidad del *magic* *`%rerun`* de *IPython*.
 
-Después de definir la metodología, se vuelven a calcular cada una de las gráficas definidas para las preguntas y respuestas de la *[sección 3.3.](#preguntas-y-respuestas)*
+Después de definir la metodología, se vuelven a calcular cada una de las gráficas definidas para las preguntas y respuestas de la *[sección 3.3.](#33-preguntas-y-respuestas)*
 
 **Ejemplo**
 
@@ -566,9 +566,10 @@ Toda la actualización de las demás gráficas se encuentran dentro de la carpet
 [Regresar](#índice)
 
 ## **4. URL de interés**
+---
+A continuación se listan unas páginas web donde se puede encontrar documentación sobre las funciones y procedimientos realizados en este trabajo.
 
 ---
-
 **Paquete *pandas***
 
 [Documentación del paquete *pandas* de *Python*](https://pandas.pydata.org/pandas-docs/stable/index.html)
@@ -642,7 +643,7 @@ Toda la actualización de las demás gráficas se encuentran dentro de la carpet
 
 ## **5. Contacto**
 
-Si existe alguna duda, sugerencia o comentario sobre este informe, el código de programación o [información legal](#11-licenciamiento) al respecto, por favor escribir a alguno de los siguientes correos:
+Si existe alguna duda, sugerencia o comentario sobre este informe, el código de programación o [información legal](#11-licenciamiento) al respecto, así como reportar enlaces no funcionales o código erroneo, por favor escribir a alguno de los siguientes correos:
 
 + Juan Pablo Trujillo Alviz: *jptrujilloa@unal.edu.co*
 + Jhon Anderson Londoño Herrera: *jalondonh@unal.edu.co*
