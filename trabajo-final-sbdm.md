@@ -286,7 +286,11 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
     >Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o completamente al desarrollo en entorno Web.
 
-13. ¿Cuál es el país más experto e inexperto programando por encuesta? **(Jhon)**
+12. ¿Cuál es el país más experto e inexperto programando?
+
+    ![query12](imagenes/query12.PNG)
+
+    >Estados Unidos tiene la mayor cantidad de programadores con más años de experiencia, mientras que India tiene la mayor cantidad con menos años de experiencia. Estos resultados son consistentes ya que son los dos países que tienen mayor número de encuestas respondidas. 
 
 
 14. ¿Cuál es el número promedio de lenguajes que saben los programadores por encuesta?
@@ -312,6 +316,8 @@ De la información de la encuesta se propone responder las siguientes preguntas:
     ![query16](imagenes/query16.PNG)
 
     >En Colombia, el lenguaje de programación más popular es JavaScript y muestra una clara tendencia de crecimiento, mientras que SQL en su versión estandar o MySQL también ocupa una posición importante. 
+
+Todas  gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow), identificadas con el nombre *"query**n**.PNG"*, donde n es el número de la pregunta menos 1. Ejemplo, para la pregunta 1, la imagen se llama *"query0.PNG"*.
 
 [Regresar](#índice)
 
@@ -468,7 +474,7 @@ De forma similar, para la pregunta 17: ¿cuáles son los tres lenguajes más usa
 
 Se agregaron los lenguajes de programación y el año de respuesta de la encuesta al inicio de la gráfica.
 
-Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow). 
+Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow), identificadas con el nombre *"query**n**-v2.PNG"*, donde n es el número de la pregunta menos 1. Ejemplo, para la pregunta 1, la imagen se llama *"query0-v2.PNG"*. 
 
 [Regresar](#índice)
 
@@ -555,7 +561,7 @@ Para visualizar los resultados se toma como muestra la pregunta pregunta 15: ¿c
 
 Se observa la modificación de los rangos salariales y el incremento de la cantidad de encuestas respondidas por año. 
 
-Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow). 
+Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow), identificadas con el nombre *"query**n**-v3.PNG"*, donde n es el número de la pregunta menos 1. Ejemplo, para la pregunta 1, la imagen se llama *"query0-v3.PNG"*. 
 
 [Regresar](#índice)
 
