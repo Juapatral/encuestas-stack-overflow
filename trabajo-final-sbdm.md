@@ -40,7 +40,11 @@ Juan Pablo Trujillo Alviz
 
     3.7 [Incremento de la bodega de datos](#37-incremento-de-la-bodega-de-datos)
 
-4. [URL's de interés](#4-urls-de-interes)
+    3.8 [Modificación de indicadores](#38-modificación-de-indicadores)
+
+4. [URL's de interés](#4-url-de-interés)
+
+5. [Contacto](#5-contactos)
 
 <br>
 
@@ -390,7 +394,7 @@ Para las variables de interés se tienen los siguientes supuestos:
 
 ### **3.7. Incremento de la bodega de datos**
 
-Suponga que, por alguna causa ajena a este ejercicio, una respuesta de una encuesta de alguno de los años quedó por for fuera de la bodega de datos. Es de interés ingresar las respuestas, limpiarlas para que sean acordes al esquema de la tabla *encuestas* y recalcular todos los indicadores definidios en la sección de [Preguntas y respuestas](#33-preguntas-y-respuestas). 
+Suponga que, por alguna causa ajena a este ejercicio, una respuesta de una encuesta de alguno de los años quedó por for fuera de la bodega de datos. Es de interés ingresar las respuestas, limpiarlas para que sean acordes al esquema de la tabla *encuestas* y recalcular todos los indicadores definidios en la sección de [preguntas y respuestas](#33-preguntas-y-respuestas). 
 
 Se propone realizar la inscripción de cada respuesta a través de una entrada definida por el usuario, la cual es validada si cumple con las características de cada tipo de dato. Para ello, se crea una función propia en *Python* con la siguiente documentación:
 
@@ -428,7 +432,7 @@ Después de definir la metodología para ingresar una respuesta más a cualquier
 %rerun -g consulta15
 ```
 
-Utilizando este *magic* se pueden realizar nuevamente las gráficas de todas las preguntas y respuestas de la sección *[3.3.](#preguntas-y-respuestas)* 
+Utilizando este *magic* se pueden realizar nuevamente las gráficas de todas las preguntas y respuestas de la *[sección 3.3.](#preguntas-y-respuestas)* 
 
 Para más información acerca de la funcionalidad el *magic `%rerun`*, dar click [aquí](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-rerun).
 
@@ -470,16 +474,171 @@ Toda la actualización de las demás gráficas se encuentran dentro de la carpet
 
 ### **3.8 Modificación de indicadores**
 
-~~Pendiente definir metodología de actualización de indicadores~~
+Suponga que, por alguna causa ajena a este ejercicio, los datos ingresados en la tabla *encuestas* no son reales y deben ser modificados. Es de interés ingresar las respuestas, limpiarlas para que sean acordes al esquema de la tabla *encuestas* y recalcular todos los indicadores definidios en la sección de [preguntas y respuestas](#33-preguntas-y-respuestas).  
 
-Después de definir la metodología, se vuelven a calcular cada una de las gráficas definidas para las preguntas y respuestas de la sección *[3.3.](#preguntas-y-respuestas)*
+Se propone que la modificación de los datos esté dada por la identificación de cuáles registros se quieren modificar y por qué valores o textos deben ser reemplazados. Para ello, se crean dos funciones propias en *Python*: *`cambiar_lista(args)`* y *`cambiar_dataframe(arg)`*. Sus respectivas documentaciones son las siguientes:
+
+```terminal
+# funcion cambiar lista
+
+"""cambiar_lista(lista, patron, reemplazo, cambios = None, entero = False, reg_expr = True)
+  
+  Esta función busca patron sobre la lista y cambia los elementos por reemplazo, en los primeros n registros definidos por cambios. 
+  
+  lista     (list) lista sobre la que se quiere modificar información
+  
+  patron    (str)  patrón a buscar sobre la lista, puede ser una expresión regular si reg_expr es True
+  
+  reemplazo (str)  valor a reemplazar para todos los elementos encontrados con patron
+  
+  cambios   (int)  Por defecto None. cantidad de cambios a realizar, si es None, se realizan todos los cambios que sean posible
+  
+  entero    (bool) Por defecto False. se establece si la lista se devuelve como enteros
+  
+  reg_expr  (bool) Por defecto True. se establece si patron es una expersion regular o si se quiere buscar explícitamente
+  """
+
+# funcion cambiar_dataframe
+
+  """cambiar_dataframe(dataframe, columna, patron, reemplazo, dataframe_reemplazo = None, cambios = None, entero = False, reg_expr = True):
+  
+  Cambia todos los elementos de la columna columna de dataframe, utilizando la funcion cambiar_lista
+  definida anteriormente (wrapper)
+  
+  dataframe             (dataframe) dataframe sobre el cual realizar el cambio
+  
+  columna               (str)       columna a la cual se quiere realizar el cambio
+  
+  patron                (str)       (cambiar_lista) patrón a buscar sobre la lista, puede ser una expresión regular si reg_expr es True
+  
+  reemplazo             (str)       (cambiar_lista) valor a reemplazar para todos los elementos encontrados con patron
+  
+  dataframe_reemplazo   (dataframe) dataframe objeto del reemplazo
+  
+  cambios               (int)       (cambiar_lista) Por defecto None. cantidad de cambios a realizar, si es None, se realizan todos los cambios que sean posible
+  
+  entero                (bool)      (cambiar_lista) Por defecto False. se establece si la lista se devuelve como enteros
+  
+  reg_expr              (bool)      (cambiar_lista) Por defecto True. se establece si patron es una expersion regular o si se quiere buscar explícitamente
+  """
+```
+Al igual que en la *[sección 3.7](#37-incremento-de-la-bodega-de-datos)*, una vez se realizan las modificaciones sobre la bodega de datos se vuelven a hacer todos los cálculos para cada una de las gráficas. Para este recálculo, se utiliza la funcionalidad del *magic* *`%rerun`* de *IPython*.
+
+Después de definir la metodología, se vuelven a calcular cada una de las gráficas definidas para las preguntas y respuestas de la *[sección 3.3.](#preguntas-y-respuestas)*
 
 **Ejemplo**
 
-Se quiere actualizar el ~~siguiente indicador~~
+Se quiere actualizar la información del rango salarial más común en Colombia por año de encuesta y convertirlos en el rango salarial *"120K - 140K"*. 
 
-~~Se realiza el proceso~~
+Para realizar el proceso de modificación se ejecutan los siguientes comandos:
 
-~~Estos son los resultados~~
+```terminal
+# EJEMPLO
+# para las encuestas de colombia, cambiar para que el rango salarial mas alto en todos los anios sea 120K - 140K
+
+encuestas2 = encuestas[encuestas['country'] == 'Colombia']
+cambiar_dataframe(encuestas2,
+                  'salary',                 
+                  'Less than 20K', 
+                  '120K - 140K',
+                  dataframe_reemplazo = encuestas,
+                  cambios = None
+                 )
+```
+
+Después de actualizada la tabla *encuestas*, las gráficas de las preguntas  se actualizan al ejecutar el *magic %rerun*.
+
+Para visualizar los resultados se toma como muestra la pregunta pregunta 15: ¿cuánto es el salario más común en Colombia por encuesta?
+
+![query14](imagenes/query14.PNG)
+![query14-v3](imagenes/query14-v3.PNG)
+
+Se observa la modificación de los rangos salariales y el incremento de la cantidad de encuestas respondidas por año. 
+
+Toda la actualización de las demás gráficas se encuentran dentro de la carpeta de *imágenes* en la rama principal de [este repositorio](https://github.com/Juapatral/encuestas-stack-overflow). 
+
+[Regresar](#índice)
+
+## **4. URL de interés**
+
+---
+
+**Paquete *pandas***
+
+[Documentación del paquete *pandas* de *Python*](https://pandas.pydata.org/pandas-docs/stable/index.html)
+
+[Cómo concatenar dataframes con *pandas*](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html)
+
+[Cómo combinar diferentes columnas de texto con *pandas*](https://stackoverflow.com/questions/19377969/combine-two-columns-of-text-in-dataframe-in-pandas-python)
+
+[Cómo contar patrones de caracteres con *pandas*](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.str.count.html)
+
+[Cómo renombrar columnas con *pandas*](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.rename.html)
+
+[Cómo convertir índices en columnas con *pandas*](https://stackoverflow.com/questions/20461165/how-to-convert-index-of-a-pandas-dataframe-into-a-column)
+
+[Cómo anidar múltiples métodos con *pandas*](https://tomaugspurger.github.io/method-chaining.html)
+
+[Cómo filtrar por múltiples elementos con *pandas*](https://stackoverflow.com/questions/12096252/use-a-list-of-values-to-select-rows-from-a-pandas-dataframe)
+
+[Cómo cambiar datos de un dataframe con *pandas*](https://stackoverflow.com/questions/45093241/how-to-replace-part-of-dataframe-in-pandas)
+
+[Cómo cambiar un dato específico de un dataframe con *pandas*](https://stackoverflow.com/questions/31569384/set-value-for-particular-cell-in-pandas-dataframe-with-iloc)
+
+---
+**Expresiones regulares *re***
+
+[Documentación del paquete *re* de *Python*](https://docs.python.org/3/library/re.html)
+
+[Cómo trabajar con expresiones regulares con *re*](https://www.guru99.com/python-regular-expressions-complete-tutorial.html)
+
+---
+
+**Graficar *matplotlib***
+
+[Documentacion del paquete *matplotlib* de *Python*](https://matplotlib.org/3.1.0/index.html#)
+
+[Cómo guardar una gráfica de *matplotlib* usando *savefig*](https://matplotlib.org/3.1.0/api/_as_gen/matplotlib.pyplot.savefig.html)
+
+---
+
+***Markdown***
+
+[Documentación sobre el formato *Markdown*](https://www.markdownguide.org/getting-started)
+
+[Cómo crear tablas en formato Markdown](https://www.tablesgenerator.com/markdown_tables)
+
+[Cómo aplicar formato de texto en *Markdown*](https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-)
+
+---
+
+***Jupyter***
+
+[Cómo añadir imágenes a un cuaderno de *Jupyter*](https://stackoverflow.com/questions/10628262/inserting-image-into-ipython-notebook-markdown)
+
+[Cómo repetir comandos de *Jupyter* en otra celda](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-rerun)
+
+[Cómo ingresar datos por usuario a cuaderno de *Jupyter*](https://stackoverflow.com/questions/34968112/how-to-give-jupyter-cell-standard-input-in-python)
+
+---
+
+**Varios**
+
+[Ejemplo de trabajar con tipos de dato *None* o *Nonetype*](https://stackoverflow.com/questions/23086383/how-to-test-nonetype-in-python)
+
+[Ejemplo de añadir elementos a un diccionario](https://thispointer.com/python-how-to-add-append-key-value-pairs-in-dictionary-using-dict-update/)
+
+[Guía de estilo para código *Python*](https://www.python.org/dev/peps/pep-0008/)
+
+---
+
+[Regresar](#índice)
+
+## **5. Contacto**
+
+Si existe alguna duda, sugerencia o comentario sobre este informe, el código de programación o [información legal](#11-licenciamiento) al respecto, por favor escribir a alguno de los siguientes correos:
+
++ Juan Pablo Trujillo Alviz: *jptrujilloa@unal.edu.co*
++ Jhon Anderson Londoño Herrera: *jalondonh@unal.edu.co*
 
 [Regresar](#índice)
