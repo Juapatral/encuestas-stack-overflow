@@ -7,6 +7,7 @@
 ###  **<center> Integrantes: </center>**
 ​
 <center> Jhon Anderson Londoño Herrera<br>
+Juan Camilo Agudelo Marin<br>
 Juan Pablo Trujillo Alviz 
 </center><br>
 
@@ -220,11 +221,11 @@ Después de la limpieza de cada una de las encuestas, el resultado es la bodega 
 | salary | string | Rango salarial en USD: 0, Less than 20K, 20K - 40K, (rangos de 20K en 20K), 120K - 140K, More than 140K|
 | programming_language| string | Lenguajes de programación o tecnologías que la persona dice saber manejar, separados por punto y coma (";")|
 
+La tabla puede ser consultada [aquí](link a github)
+
 [Regresar](#índice)
 
 ### **3.3. Preguntas y respuestas**
-
-~~En esta sección van las preguntas, las imágenes de las respuestas y un corto enunciado. Todavía no está terminado~~
 
 De la información de la encuesta se propone responder las siguientes preguntas:
 
@@ -382,19 +383,47 @@ Para las variables de interés se tienen los siguientes supuestos:
 
 | columna | criterio |
 | --- | --- |
-| country | Participación de cada país a lo largo de los años.|
+| country | Participación de cada país a lo largo de los años y tasa de crecimiento.|
 | years_programming | Participación de cada rango de experiencia y su tasa de crecimiento.|
 | occupation | Participación de cada ocupación y su tasa de crecimiento.|
-| salary | Participación por cada país.|
-| programming_language| Tasa de crecimiento de cada uno y promedio de número de lenguajes o tecnologías que domina cada encuestado.| 
+| salary | Participación de cada rango salariar y su tasa de crecimiento.|
+| programming_language| Tasa de crecimiento de cada uno y porcentaje de participación|
 
-#### Resultados preliminares
+Además, para la columna de lenguajes de programación, se tiene en cuenta que si se pronostica el dato *No language* para una respuesta, esta no puede contener ningún otro lenguaje de programación.
 
-~~Espacio para escribir: **JHON JP**~~
+Finalmente, se pronosticarán todas las respuestas del 2018 con respecto a todo el conjunto de datos. Es decir, se tomarán en cuenta cerca de 159 mil respuestas como insumo para el pronóstico. 
 
-#### Ejecución del código
+#### Desarrollo
 
-~~Espacio para escribir: **JHON JP**~~
+**Total de encuestas**: para la tendencia de crecimiento se utiliza la función de *`numpy.polyfit(x, y, n)`*, función que permite calcular los estimadores de mínimos cuadrados de la función polinómica de grado *n* de *y = f(x)*. Puntualmente para este ejercicio, solo se estima la función de grado 1. Cabe aclarar que esta estimación se realiza con la información de 7 años y es altamente probable que los estimadores no sean insesgados. Sin embargo, debido a que no se posee más información, se procederá con estos resultados.
+
+ El primer cálculo a realizar es pronosticar cuántas encuestas se responderán en 2018, el cual se realiza utilizando la función *numpy.polyfit()*.
+
+**País, años programando, ocupación y salario:** para calcular el porcentaje de *participación actua* de cada posible categoría en cada una de las columnas, se crea una función propia en *Python* con la siguiente documentación:
+
+```terminal
+  participacion(dataframe, columna)
+  
+  dataframe   (dataframe)  dataframe sobre el que se quiere hallar la proporcion del total de columna
+  
+  columna     (str)        string con el nombre de la columna sobre la cual se calcula la proporcion
+  
+  Esta funcion devuelve una serie agrupada por las categorias de columna con su participacion sobre el total y su participacion del total como porcentaje. (e.g. 45% equivale a 45)
+```
+
+Con la información del pronóstico calculado utilizando *numpy.polyfit*, se genera un nuevo indicador de *participación futura*, el cual se pondera con *participacion actual* para crear el factor definitivo para el pronóstico.  
+
+**Lenguajes de programación:** utilizando información previamente consultada (preguntas 9 de la [seccion 3.3.](#33-preguntas-y-respuestas)), se calculan la *participación actual* y la *participación futura* utilizando el mismo procedimiento descrito. Además, se genera un vector, del mismo largo que la cantidad de respuestas pronosticadas, de aleatorios de 0 o 1 por cada lenguaje con el fin de que estos pronósticos sean distribuidos entre todas las respuestas.  
+
+***Nota:*** para todos los casos, la semilla de generación de números aleatorios es *123456*.
+
+**Resultados**
+
+Después de realizar este proceso, la cantidad de respuestas pronosticadas es de 60.229, observable en esta gráfica.
+
+![pronostico](imagenes/pronostico2018.PNG)
+
+La tabla completa puede ser visualizada [aquí](link github), mientras que el código de progamación se encuentra en el cuaderno de [*Jupyter*]((https://github.com/Juapatral/encuestas-stack-overflow/blob/master/trabajo_final_sbdm_20191.ipynb)), en la sección de *Pronóstico 2018*. 
 
 [Regresar](#índice)
 
@@ -592,6 +621,28 @@ A continuación se listan unas páginas web donde se puede encontrar documentaci
 
 [Cómo cambiar un dato específico de un dataframe con *pandas*](https://stackoverflow.com/questions/31569384/set-value-for-particular-cell-in-pandas-dataframe-with-iloc)
 
+[Cómo calcular el porcentaje del total con *pandas*](https://stackoverflow.com/questions/23377108/pandas-percentage-of-total-with-groupby)
+
+[Cómo realizar pivotes sobre un *dataframe* con *pandas*](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.pivot.html)
+
+[Cómo exportar un *dataframe* a formato *json* con *pandas*](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html)
+
+---
+
+**numpy**
+
+[Documentación del paquete *numpy* de *Python*](https://docs.scipy.org/doc/numpy/reference/)
+
+[Cómo calcular la función de probabilidad de una distribución binomial con *numpy*](https://discuss.codecademy.com/t/what-does-the-np-random-binomial-function-return/361162)
+
+[Cómo calcular números aleatorios con una distribución binomial con *numpy*](https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.binomial.html)
+
+[Cómo calcular números aleatorios con *numpy*](https://docs.scipy.org/doc/numpy/reference/routines.random.html)
+
+[Cómo calcular una regresión de mínimos cuadrados con *numpy*](https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html)
+
+[Cómo calcular la tendencia de un arreglo de números con *numpy*](https://stackoverflow.com/questions/10048571/python-finding-a-trend-in-a-set-of-numbers)
+
 ---
 **Expresiones regulares *re***
 
@@ -629,6 +680,17 @@ A continuación se listan unas páginas web donde se puede encontrar documentaci
 
 ---
 
+**MongoDB**
+
+[Documentación del gestor de base de datos NoSQL *MongoDB*](https://docs.mongodb.com/manual/)
+
+[Introducción básica a *MongoDB*](http://disi.unal.edu.co/~gjhernandezp/datascience/talks/Taller-NoSQL.pdf)
+
+[Cómo utilizar MapReduce con *MongoDB*](https://docs.mongodb.com/manual/core/map-reduce/)
+
+
+---
+
 **Varios**
 
 [Ejemplo de trabajar con tipos de dato *None* o *Nonetype*](https://stackoverflow.com/questions/23086383/how-to-test-nonetype-in-python)
@@ -647,5 +709,6 @@ Si existe alguna duda, sugerencia o comentario sobre este informe, el código de
 
 + Juan Pablo Trujillo Alviz: *jptrujilloa@unal.edu.co*
 + Jhon Anderson Londoño Herrera: *jalondonh@unal.edu.co*
++ Juan Camilo Agudelo Marín: juagudelom@unal.edu.co
 
 [Regresar](#índice)
