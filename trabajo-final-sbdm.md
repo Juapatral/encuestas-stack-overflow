@@ -4,14 +4,17 @@
 ### **<center> Posgrado de Analítica 2019-1 </center>**
 <center> Sistema de Bases de Datos Masivos </center><br>
 
-###  **<center> Integrantes: </center>**
+###  **<center> Integrantes:</center>**
 ​
 <center> Jhon Anderson Londoño Herrera<br>
 Juan Camilo Agudelo Marin<br>
 Juan Pablo Trujillo Alviz 
 </center><br>
 
-<center> 22 de junio de 2019 </center>
+<center> 22 de junio de 2019 </center><br>
+
+### **<center> Universidad Nacional de Colombia </center>**
+<center>Medellín</center>
 
 <br>
 
