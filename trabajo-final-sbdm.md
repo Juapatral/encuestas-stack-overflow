@@ -400,24 +400,24 @@ Se dejó preparada la lista desde *Python* con el fin de trabajarla como un obje
 Estos son los pasos de elaboración del *MapReduce*.
 
 >Se conecta con MongoDB
-    ![mr1](imagenes/mr1.PNG)
+    ![mr1](imagenes/mr1.png)
 
 >El resultado es exitoso:
-    ![mr2](imagenes/mr2.PNG)
+    ![mr2](imagenes/mr2.png)
 
 >Se incia MongoDB con el comando mongo en la consola.
 
 >Se usa la base dentro de mongo
-    ![mr3](imagenes/mr3.PNG)
+    ![mr3](imagenes/mr3.png)
 
 >Se programan la funciones *map* y *reduce*.
-    ![mr4](imagenes/mr4.PNG)
+    ![mr4](imagenes/mr4.png)
 
 >Se muestran algunos de los resultados el *map* y  *reduce*, se ejecuta y se muestra la información resultante 
-    ![mr5](imagenes/mr5.PNG)
+    ![mr5](imagenes/mr5.png)
 
 >El reduce, se ejecuta y se muestra la información resultante 
-    ![mr6](imagenes/mr6.PNG)
+    ![mr6](imagenes/mr6.png)
 
 
 El archivo en formato *json* que contiene la información de cada uno de los lenguajes de programación puede ser consultado [aquí](https://raw.githubusercontent.com/Juapatral/encuestas-stack-overflow/master/archivos/programmers.json).
