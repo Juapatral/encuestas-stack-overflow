@@ -244,10 +244,19 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
     >Estados Unidos de América es el país con mayor número de encuestados (cerca de 38 mil). Le siguen India y Reino Unido con un aproximado de 15 mil encuestados cada uno. Esto se ve reflejado en la industria tecnológica y de servicios de telecomunicaciones que tienen cada uno de estos países.
 
-3. ¿Cuántos son los programadores que dominan cada uno de los lenguajes o tecnologías? **(Jhon)**
+3. ¿Cuántos son los programadores que dominan cada uno de los lenguajes o tecnologías? 
 
+    ![query2](imagenes/query2.PNG)
 
-4. ¿Cuáles son los cinco lenguajes de programación mas usados por encuesta? **(Jhon)**
+    >El lenguaje más popular a lo largo de los años es *Javascript*, por su versatilidad y la integración que tiene con distintas plataformas. Le sigue *SQL* por ser el lenguaje base para el manejo de bases de datos relacionales.
+
+4. ¿Cuáles son los cinco lenguajes de programación mas usados por encuesta? 
+
+    ![query3](imagenes/query3.PNG)
+
+    >La tecnología dominante en la encuesta
+    es el lenguaje de programación *Javascript*
+    y lo hace desde el inicio de las encuestas, logrando su mayor pico de conocedores del lenguaje en el año 2016 con un total aproximado de 27 mil encuestados. De igual forma, se puede observar un bloque de popularidad entre *Javascript*, *SQL*, *MySQL* y *Java*.
 
 
 5. ¿Cuál es el rango salarial mas común por encuesta?
@@ -263,7 +272,11 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
     >Se observa que en casi todos los años, los estudiantes o profesionales no dedicados al desarrollo de código son los que más respondieron las encuestas. Cabe notar que para el año 2017 se creo la opción de "Desarrollador profesional", ocupación que puede contener muchas otras, explicando así el dato atípico para dicho año. 
 
-7. ¿Cuáles son las tres principales ocupaciones por pais? **(Jhon)**
+7. ¿Cuáles son las tres principales ocupaciones por pais?
+
+    ![query6](imagenes/query6.PNG)
+
+    >Se observa un dominio marcado por el *Professional Developer*, mostrando un gran crecimiento por los paises mas desarrollados. 
 
 
 8. ¿Cuál es el principal rango salarial en cada país de los diez países con más respuestas?
@@ -272,7 +285,11 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
     >Los países con más nivel de desarrollo económico como Estados Unidos, Reino Unido y Australia, presentan los salarios más grandes, mientras que países menos desarrollados como India y Polonía registran menores rangos salariales. 
 
-9. ¿Cuál es el lenguaje con más crecimiento en las encuestas? **(Jhon)** ***(Muy importante para la predicción)***
+9. ¿Cuál es el lenguaje con más crecimiento en las encuestas? 
+
+    ![query8](imagenes/query8.PNG)
+
+    >Homogenizando a procentaje el crecimiento de todos los lenguajes y escogiendo los 10 lenguajes más populares, se puede observar que existe una gran acogida por el lenguaje *Python*, lenguaje que está gozando de popularidad por el crecimiento en disciplinas enfocadas en el desarrollo de sistemas de *machine learning* y *Big Data*. Existe un decrecimiento en la popularidad del lenguaje en la última encuesta que se replica en los demás, siendo Python el de menor caída. 
 
 
 10. ¿Cuál es el lenguaje mas popular en cada país de los diez países con mas programadores?
@@ -281,7 +298,12 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
     >Se observa que JavaScript es el lenguaje preponderante en cada uno de los países, ocupando entre el 30 % y el 50 % del total de personas que respondieron la encuesta en cada país. Solo en "Europa: otro" se observa mayor participación por SQL.
 
-11. ¿Cuáles son las cinco ocupaciones más populares de los programadores que dominan *Python* por encuesta? **(Jhon)**
+11. ¿Cuáles son las cinco ocupaciones más populares de los programadores que dominan *Python* por encuesta? 
+
+
+    ![query10](imagenes/query10.PNG)
+
+    >Hubo crecimiento razonable antes del último año de encuestas de perfiles de *Developer*, sin embargo, hubo un gran incremento en la profesion *Professional Developer*, profesión muy común en la medición de la encuesta.
 
 
 12. Dentro de los dos rangos salariales más altos, ¿cuáles son las tres ocupaciones con mayor número  de programadores?
@@ -290,7 +312,7 @@ De la información de la encuesta se propone responder las siguientes preguntas:
 
     >Los encuestados con mayores rangos salariales se dedican a ser desarrolladores profesionales o completamente al desarrollo en entorno Web.
 
-12. ¿Cuál es el país más experto e inexperto programando?
+13. ¿Cuál es el país más experto e inexperto programando?
 
     ![query12](imagenes/query12.PNG)
 
@@ -312,8 +334,11 @@ De la información de la encuesta se propone responder las siguientes preguntas:
     >Los encuestados solo respondieron que son de Colombia a partir del año 2014. Se observa que el rango salarial más común es Less than 20K, mientras que para el año 2017 se presentan salarios muy elevados, similar a la distribución a nivel global.
 
 
-16. ¿Cuál es la ocupacion más popular en Colombia por encuesta? **(Jhon)**
+16. ¿Cuál es la ocupacion más popular en Colombia por encuesta? 
 
+    ![query15](imagenes/query15.PNG)
+
+    >En Colombia, la profesión más popular es la de *Professional Developer*. Aunque los registro fueron precarios para todos los años, se puede ver que la profesión crece de manera semejante con los países que más respuestas tienen en todas las encuestas. 
 
 17. ¿Cuáles son los tres lenguajes más usados en Colombia por encuesta?
 
@@ -368,7 +393,32 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 
 ### **3.5. Número de programadores por lenguaje de programación utilizando la metodología de MapReduce**
 
-~~Espacio para escribir: **Jhon**~~
+La forma en que venía la información relacionada con los lenguajes en la bodega requería transformarla para obtener información valiosa. Es por eso que se usó un *MapReduce* para saber cuántos lenguajes de programación hay y cuántas personas conocían cada uno de estos lenguajes.
+
+Se dejó preparada la lista desde *Python* con el fin de trabajarla como un objeto *Array* desde *MongoDB*. Se usó la operación típica del *MapReduce*, que es encontrar palabras, agruparlas y sumarlas.
+
+Estos son los pasos de elaboración del *MapReduce*.
+
+>Se conecta con MongoDB
+    ![mr1](imagenes/mr1.PNG)
+
+>El resultado es exitoso:
+    ![mr2](imagenes/mr2.PNG)
+
+>Se incia MongoDB con el comando mongo en la consola.
+
+>Se usa la base dentro de mongo
+    ![mr3](imagenes/mr3.PNG)
+
+>Se programan la funciones *map* y *reduce*.
+    ![mr4](imagenes/mr4.PNG)
+
+>Se muestran algunos de los resultados el *map* y  *reduce*, se ejecuta y se muestra la información resultante 
+    ![mr5](imagenes/mr5.PNG)
+
+>El reduce, se ejecuta y se muestra la información resultante 
+    ![mr6](imagenes/mr6.PNG)
+
 
 El archivo en formato *json* que contiene la información de cada uno de los lenguajes de programación puede ser consultado [aquí](https://raw.githubusercontent.com/Juapatral/encuestas-stack-overflow/master/archivos/programmers.json).
 
