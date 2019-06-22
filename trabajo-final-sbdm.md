@@ -224,7 +224,7 @@ Después de la limpieza de cada una de las encuestas, el resultado es la bodega 
 | salary | string | Rango salarial en USD: 0, Less than 20K, 20K - 40K, (rangos de 20K en 20K), 120K - 140K, More than 140K|
 | programming_language| string | Lenguajes de programación o tecnologías que la persona dice saber manejar, separados por punto y coma (";")|
 
-La tabla puede ser consultada [aquí](link a github)
+La tabla puede ser consultada [aquí](https://raw.githubusercontent.com/Juapatral/encuestas-stack-overflow/master/archivos/encuestas_organizadas-v1-20110101-20171231.csv).
 
 [Regresar](#índice)
 
@@ -361,7 +361,7 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 *<center> Imagen del modelo de Malinowski </center>*
 
 
-![Imagen de Malinowski](https://juapatral.github.io/encuestas-stack-overflow/imagenes/Malinowski.PNG)
+![Imagen de Malinowski](imagenes/Malinowski.PNG)
 
 
 [Regresar](#índice)
@@ -369,6 +369,8 @@ El modelo de Malinowski es similar al modelo estrella, cambiando la notación de
 ### **3.5. Número de programadores por lenguaje de programación utilizando la metodología de MapReduce**
 
 ~~Espacio para escribir: **Jhon**~~
+
+El archivo en formato *json* que contiene la información de cada uno de los lenguajes de programación puede ser consultado [aquí](https://raw.githubusercontent.com/Juapatral/encuestas-stack-overflow/master/archivos/programmers.json).
 
 [Regresar](#índice)
 
@@ -414,7 +416,9 @@ Finalmente, se pronosticarán todas las respuestas del 2018 con respecto a todo 
   Esta funcion devuelve una serie agrupada por las categorias de columna con su participacion sobre el total y su participacion del total como porcentaje. (e.g. 45% equivale a 45)
 ```
 
-Con la información del pronóstico calculado utilizando *numpy.polyfit*, se genera un nuevo indicador de *participación futura*, el cual se pondera con *participacion actual* para crear el factor definitivo para el pronóstico.  
+Con la información del pronóstico calculado utilizando *numpy.polyfit*, se genera un nuevo indicador de *participación futura*, el cual se pondera con *participacion actual* para crear el factor definitivo para el pronóstico.
+
+Con la información del pronóstico, se generan 60.229 registros nuevos de forma aleatoria que cumplan con las características de participación de cada categoría. 
 
 **Lenguajes de programación:** utilizando información previamente consultada (preguntas 9 de la [seccion 3.3.](#33-preguntas-y-respuestas)), se calculan la *participación actual* y la *participación futura* utilizando el mismo procedimiento descrito. Además, se genera un vector, del mismo largo que la cantidad de respuestas pronosticadas, de aleatorios de 0 o 1 por cada lenguaje con el fin de que estos pronósticos sean distribuidos entre todas las respuestas.  
 
@@ -426,7 +430,7 @@ Después de realizar este proceso, la cantidad de respuestas pronosticadas es de
 
 ![pronostico](imagenes/pronostico2018.PNG)
 
-La tabla completa puede ser visualizada [aquí](link github), mientras que el código de progamación se encuentra en el cuaderno de [*Jupyter*]((https://github.com/Juapatral/encuestas-stack-overflow/blob/master/trabajo_final_sbdm_20191.ipynb)), en la sección de *Pronóstico 2018*. 
+La tabla completa puede ser visualizada [aquí](https://raw.githubusercontent.com/Juapatral/encuestas-stack-overflow/master/archivos/encuestas_pronosticadas-v1-20180101-20181231.csv), mientras que el código de progamación se encuentra en el cuaderno de [*Jupyter*]((https://github.com/Juapatral/encuestas-stack-overflow/blob/master/trabajo_final_sbdm_20191.ipynb)), en la sección de *Pronóstico 2018*. 
 
 [Regresar](#índice)
 
